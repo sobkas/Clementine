@@ -1,8 +1,8 @@
 
 set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -Wall")
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Woverloaded-virtual -Wall -Wno-sign-compare")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Woverloaded-virtual -Wall -Wno-sign-compare --std=c++0x")
 
-option(BUILD_WERROR "Build with -Werror" ON)
+option(BUILD_WERROR "Build with -Werror" OFF)
 
 if(BUILD_WERROR)
   if (LINUX)

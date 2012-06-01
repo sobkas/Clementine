@@ -69,6 +69,11 @@ GstElement* MoodbarPipeline::CreateElement(const QString& factory_name) {
   return ret;
 }
 
+template <typename F, typename... Args>
+int GetFunctionParamCount(F (*function)(Args...)) {
+  return sizeof...(Args);
+}
+
 void MoodbarPipeline::Start() {
   Q_ASSERT(QThread::currentThread() != qApp->thread());
 
@@ -104,6 +109,8 @@ void MoodbarPipeline::Start() {
   // Connect signals
   g_signal_connect(decodebin, "pad-added", G_CALLBACK(NewPadCallback), this);
   gst_bus_set_sync_handler(gst_pipeline_get_bus(GST_PIPELINE(pipeline_)), BusCallbackSync, this);
+
+  qLog(Debug) << GetFunctionParamCount(&NewPadCallback);
 
   // Set appsink callbacks
   GstAppSinkCallbacks callbacks;
