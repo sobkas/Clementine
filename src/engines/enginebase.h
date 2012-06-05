@@ -26,9 +26,10 @@
 #include <QObject>
 #include <QList>
 
+#include <cstdint>
+#include <boost/noncopyable.hpp>
 #include <sys/types.h>
 #include <vector>
-#include <boost/noncopyable.hpp>
 
 #include "engine_fwd.h"
 

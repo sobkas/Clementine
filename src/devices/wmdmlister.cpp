@@ -143,10 +143,9 @@ void WmdmLister::ShutDown() {
   metaObject()->invokeMethod(this, "ReallyShutdown", Qt::BlockingQueuedConnection);
 }
 
-template <typename F>
-qint64 GetSpaceValue(F f) {
+qint64 GetSpaceValue(IWMDMStorageGlobals* globals, HRESULT (IWMDMStorageGlobals::*f)(DWORD*,DWORD*) ) {
   DWORD low, high;
-  f(&low, &high);
+  ((globals)->*(f))(&low, &high);
 
   return (qint64)high << 32 | (qint64)low;
 }
@@ -428,9 +427,9 @@ void WmdmLister::UpdateFreeSpace(DeviceInfo* info) {
   IWMDMStorageGlobals* globals;
   info->storage_->GetStorageGlobals(&globals);
 
-  info->total_bytes_ = GetSpaceValue(boost::bind(&IWMDMStorageGlobals::GetTotalSize, globals, _1, _2));
-  info->free_bytes_  = GetSpaceValue(boost::bind(&IWMDMStorageGlobals::GetTotalFree, globals, _1, _2));
-  info->free_bytes_ -= GetSpaceValue(boost::bind(&IWMDMStorageGlobals::GetTotalBad,  globals, _1, _2));
+  info->total_bytes_ = GetSpaceValue(globals, &IWMDMStorageGlobals::GetTotalSize);
+  info->free_bytes_  = GetSpaceValue(globals, &IWMDMStorageGlobals::GetTotalFree);
+  info->free_bytes_ -= GetSpaceValue(globals, &IWMDMStorageGlobals::GetTotalBad);
 
   globals->Release();
 }
