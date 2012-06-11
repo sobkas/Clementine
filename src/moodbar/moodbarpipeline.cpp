@@ -112,7 +112,8 @@ void MoodbarPipeline::Start() {
   CHECKED_GCONNECT(decodebin, "pad-added", &NewPadCallback, this);
   gst_bus_set_sync_handler(gst_pipeline_get_bus(GST_PIPELINE(pipeline_)), BusCallbackSync, this);
 
-  qLog(Debug) << GetFunctionParamCount(&NewPadCallback);
+  PrintFunctionParamTypes(&NewPadCallback);
+  qLog(Debug) << GetFunctionReturnType(&NewPadCallback);
 
   // Set appsink callbacks
   GstAppSinkCallbacks callbacks;

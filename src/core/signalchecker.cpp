@@ -43,6 +43,10 @@ bool CheckedGConnect(
     return false;
   }
 
+  for (int i = 0; i < query.n_params; ++i) {
+    qLog(Debug) << g_type_name(query.param_types[i]);
+  }
+
   g_signal_connect(source, signal, G_CALLBACK(callback), data);
   return true;
 }
