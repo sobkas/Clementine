@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Clementine Music Player\n"
 "Report-Msgid-Bugs-To: http://code.google.com/p/clementine-player/issues/list\n"
-"PO-Revision-Date: 2012-05-28 00:18+0000\n"
+"PO-Revision-Date: 2012-06-10 20:28+0000\n"
 "Last-Translator: Clementine Buildbot <clementinebuildbot@davidsansome.com>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -90,12 +90,12 @@ msgstr "%1 cançó"
 msgid "%1 songs"
 msgstr "%1 cançons"
 
-#: smartplaylists/searchpreview.cpp:129
+#: smartplaylists/searchpreview.cpp:133
 #, qt-format
 msgid "%1 songs found"
 msgstr "%1 cançons trobades"
 
-#: smartplaylists/searchpreview.cpp:126
+#: smartplaylists/searchpreview.cpp:130
 #, qt-format
 msgid "%1 songs found (showing %2)"
 msgstr "%1 cançons trobades (mostrant %2)"
@@ -262,14 +262,14 @@ msgstr "Us cal un compte Grooveshark Anywhere."
 msgid "A Spotify Premium account is required."
 msgstr "Cal un compte Premium de Spotify"
 
-#: smartplaylists/wizard.cpp:72
+#: smartplaylists/wizard.cpp:73
 msgid ""
 "A smart playlist is a dynamic list of songs that come from your library.  "
 "There are different types of smart playlist that offer different ways of "
 "selecting songs."
 msgstr "Una llista de reproducció intel·ligent és una llista dinàmica de cançons que es troben a la seva biblioteca. Existeixen diferents tipus de llistes de reproducció intel·ligent que ofereixen diferents formes de seleccionar cançons."
 
-#: smartplaylists/querywizardplugin.cpp:150
+#: smartplaylists/querywizardplugin.cpp:152
 msgid ""
 "A song will be included in the playlist if it matches these conditions."
 msgstr "S'inclourà una cançó a la llista de reproducció si coincideix amb aquestes condicions."
@@ -454,11 +454,11 @@ msgstr "Afegeix l'etiqueta d'any a la cançó"
 msgid "Add stream..."
 msgstr "Afegir flux..."
 
-#: internet/groovesharkservice.cpp:1049
+#: internet/groovesharkservice.cpp:1058
 msgid "Add to Grooveshark favorites"
 msgstr "Afegir als favorits de Grooveshark"
 
-#: internet/groovesharkservice.cpp:1055
+#: internet/groovesharkservice.cpp:1064
 msgid "Add to Grooveshark playlists"
 msgstr "Afegeix a les llistes de reproducció de Grooveshark"
 
@@ -504,7 +504,7 @@ msgstr "Afegit avui"
 msgid "Added within three months"
 msgstr "Afegit els ultims tres messos"
 
-#: internet/groovesharkservice.cpp:1329
+#: internet/groovesharkservice.cpp:1338
 msgid "Adding song to favorites"
 msgstr ""
 
@@ -520,7 +520,7 @@ msgstr ""
 msgid "After copying..."
 msgstr "Despres de copiar..."
 
-#: playlist/playlist.cpp:1136 ui/organisedialog.cpp:55
+#: playlist/playlist.cpp:1166 ui/organisedialog.cpp:55
 #: ui/qtsystemtrayicon.cpp:252 ../bin/src/ui_groupbydialog.h:129
 #: ../bin/src/ui_groupbydialog.h:142 ../bin/src/ui_groupbydialog.h:155
 #: ../bin/src/ui_albumcoversearcher.h:111
@@ -533,7 +533,7 @@ msgstr "Àlbum"
 msgid "Album (ideal loudness for all tracks)"
 msgstr "Àlbum (volum ideal per a totes les pistes)"
 
-#: playlist/playlist.cpp:1142 ui/organisedialog.cpp:58
+#: playlist/playlist.cpp:1172 ui/organisedialog.cpp:58
 #: ../bin/src/ui_groupbydialog.h:131 ../bin/src/ui_groupbydialog.h:144
 #: ../bin/src/ui_groupbydialog.h:157 ../bin/src/ui_edittagdialog.h:658
 msgid "Album artist"
@@ -641,7 +641,7 @@ msgstr "Un error desconegut de last.fm ha ocorregut: %1"
 msgid "And:"
 msgstr "I:"
 
-#: ../bin/src/ui_appearancesettingspage.h:250
+#: moodbar/moodbarrenderer.cpp:156
 msgid "Angry"
 msgstr ""
 
@@ -672,7 +672,7 @@ msgstr "Afegir compressió per evitar el clipping"
 msgid "Are you sure you want to delete the \"%1\" preset?"
 msgstr "Estas segur de que vols esborrar el \"%1\" preestablert?"
 
-#: internet/groovesharkservice.cpp:1250
+#: internet/groovesharkservice.cpp:1259
 msgid "Are you sure you want to delete this playlist?"
 msgstr "Esteu segur que voleu eliminar aquesta llista de reproducció?"
 
@@ -680,7 +680,7 @@ msgstr "Esteu segur que voleu eliminar aquesta llista de reproducció?"
 msgid "Are you sure you want to reset this song's statistics?"
 msgstr "Esteu segur que voleu restablir les estadístiques d'aquesta cançó?"
 
-#: playlist/playlist.cpp:1135 ui/organisedialog.cpp:56
+#: playlist/playlist.cpp:1165 ui/organisedialog.cpp:56
 #: ui/qtsystemtrayicon.cpp:250 ../bin/src/ui_groupbydialog.h:130
 #: ../bin/src/ui_groupbydialog.h:143 ../bin/src/ui_groupbydialog.h:156
 #: ../bin/src/ui_albumcoversearcher.h:107
@@ -752,7 +752,7 @@ msgstr "Mida d'imatge mitja"
 msgid "BBC Podcasts"
 msgstr ""
 
-#: playlist/playlist.cpp:1151 ui/organisedialog.cpp:62
+#: playlist/playlist.cpp:1181 ui/organisedialog.cpp:62
 #: ../bin/src/ui_edittagdialog.h:638
 msgid "BPM"
 msgstr "BPM"
@@ -806,7 +806,7 @@ msgstr "Millor"
 msgid "Biography from %1"
 msgstr "Biografia de %1"
 
-#: playlist/playlist.cpp:1152 ../bin/src/ui_edittagdialog.h:640
+#: playlist/playlist.cpp:1182 ../bin/src/ui_edittagdialog.h:640
 msgid "Bit rate"
 msgstr "Taxa de bits"
 
@@ -871,7 +871,7 @@ msgstr "Canceŀla"
 msgid "Change cover art"
 msgstr "Canviar la imatge de la portada"
 
-#: songinfo/songinfotextview.cpp:74
+#: songinfo/songinfotextview.cpp:77
 msgid "Change font size..."
 msgstr "Canvieu la mida de la font"
 
@@ -891,6 +891,12 @@ msgstr "Canvia el mode aleatori"
 msgid "Change the language"
 msgstr "Canviar l'idioma"
 
+#: ../bin/src/ui_playbacksettingspage.h:294
+msgid ""
+"Changing mono playback preference will be effective for the next playing "
+"songs"
+msgstr ""
+
 #: ../bin/src/ui_podcastsettingspage.h:228
 msgid "Check for new episodes"
 msgstr ""
@@ -899,7 +905,7 @@ msgstr ""
 msgid "Check for updates..."
 msgstr "Comproba actualitzacions..."
 
-#: smartplaylists/wizard.cpp:80
+#: smartplaylists/wizard.cpp:81
 msgid "Choose a name for your smart playlist"
 msgstr "Escolliu un nom per a la llista de reproducció inteŀligent"
 
@@ -919,7 +925,7 @@ msgstr "Escolliu font..."
 msgid "Choose from the list"
 msgstr "Tria de la llista"
 
-#: smartplaylists/querywizardplugin.cpp:152
+#: smartplaylists/querywizardplugin.cpp:154
 msgid "Choose how the playlist is sorted and how many songs it will contain."
 msgstr "Elegir com ordenar la llista de reproducció i quantes cançons contindrà."
 
@@ -1049,7 +1055,7 @@ msgstr ""
 msgid "Comma separated list of class:level, level is 0-3"
 msgstr "Llista separada per comes de classe:nivell, el nivell és 0-3"
 
-#: playlist/playlist.cpp:1161 smartplaylists/searchterm.cpp:279
+#: playlist/playlist.cpp:1191 smartplaylists/searchterm.cpp:279
 #: ui/organisedialog.cpp:65 ../bin/src/ui_edittagdialog.h:661
 msgid "Comment"
 msgstr "Comentari"
@@ -1062,7 +1068,7 @@ msgstr "Completa les etiquetes automàticament"
 msgid "Complete tags automatically..."
 msgstr "Completa les etiquetes automàticament..."
 
-#: playlist/playlist.cpp:1143 ui/organisedialog.cpp:59
+#: playlist/playlist.cpp:1173 ui/organisedialog.cpp:59
 #: ../bin/src/ui_groupbydialog.h:132 ../bin/src/ui_groupbydialog.h:145
 #: ../bin/src/ui_groupbydialog.h:158 ../bin/src/ui_edittagdialog.h:659
 msgid "Composer"
@@ -1125,7 +1131,7 @@ msgstr "Converitr tota la música"
 msgid "Convert any music that the device can't play"
 msgstr "Convertir qualsevol música que el dispositiu no pugui reproduir"
 
-#: internet/groovesharkservice.cpp:1128
+#: internet/groovesharkservice.cpp:1137
 msgid "Copy to clipboard"
 msgstr "Copiar al porta-retalls"
 
@@ -1147,21 +1153,21 @@ msgstr "Copiant a la base de dades de l'iPod"
 msgid "Copyright"
 msgstr ""
 
-#: transcoder/transcoder.cpp:62
+#: transcoder/transcoder.cpp:64
 #, qt-format
 msgid ""
 "Could not create the GStreamer element \"%1\" - make sure you have all the "
 "required GStreamer plugins installed"
 msgstr "No es va poder crear l'element \"%1\" de GStreamer. Assegura't de tenir tots els plugins requerits de GStramer instal·lats"
 
-#: transcoder/transcoder.cpp:425
+#: transcoder/transcoder.cpp:427
 #, qt-format
 msgid ""
 "Couldn't find a muxer for %1, check you have the correct GStreamer plugins "
 "installed"
 msgstr "No s'ha pogut trobar un muxer per %1, comprovi que té instal·lats els complements correctes de GStreamer"
 
-#: transcoder/transcoder.cpp:419
+#: transcoder/transcoder.cpp:421
 #, qt-format
 msgid ""
 "Couldn't find an encoder for %1, check you have the correct GStreamer "
@@ -1209,7 +1215,7 @@ msgstr "Imatge de portada establerta des de %1"
 msgid "Covers from %1"
 msgstr "Portades des de %1"
 
-#: internet/groovesharkservice.cpp:502 internet/groovesharkservice.cpp:1201
+#: internet/groovesharkservice.cpp:502 internet/groovesharkservice.cpp:1210
 msgid "Create a new Grooveshark playlist"
 msgstr "Crear una nova llista de reproducció de Grooveshark"
 
@@ -1328,11 +1334,11 @@ msgid ""
 "recover your database"
 msgstr ""
 
-#: playlist/playlist.cpp:1159 ../bin/src/ui_edittagdialog.h:649
+#: playlist/playlist.cpp:1189 ../bin/src/ui_edittagdialog.h:649
 msgid "Date created"
 msgstr "Data de creació"
 
-#: playlist/playlist.cpp:1158 ../bin/src/ui_edittagdialog.h:648
+#: playlist/playlist.cpp:1188 ../bin/src/ui_edittagdialog.h:648
 msgid "Date modified"
 msgstr "Data de modificació"
 
@@ -1364,7 +1370,7 @@ msgstr "Opcions per defecte"
 msgid "Delay between visualizations"
 msgstr "Retard entre visualitzacions"
 
-#: internet/groovesharkservice.cpp:505 internet/groovesharkservice.cpp:1249
+#: internet/groovesharkservice.cpp:505 internet/groovesharkservice.cpp:1258
 msgid "Delete Grooveshark playlist"
 msgstr "Esborrar la llista de reproducció de Grooveshark"
 
@@ -1422,7 +1428,7 @@ msgstr "Destí"
 msgid "Details..."
 msgstr "Detalls..."
 
-#: devices/devicekitlister.cpp:126 devices/giolister.cpp:158
+#: devices/devicekitlister.cpp:126 devices/giolister.cpp:160
 msgid "Device"
 msgstr "Dispositiu"
 
@@ -1475,7 +1481,7 @@ msgstr "Deshabilita la durada"
 msgid "Disabled"
 msgstr "Deshabilitat"
 
-#: playlist/playlist.cpp:1139 ui/organisedialog.cpp:61
+#: playlist/playlist.cpp:1169 ui/organisedialog.cpp:61
 #: ../bin/src/ui_edittagdialog.h:655
 msgid "Disc"
 msgstr "Disc"
@@ -1726,7 +1732,7 @@ msgstr "Equivalent a --log-levels *:1"
 msgid "Equivalent to --log-levels *:3"
 msgstr "Equivalent a --log-levels *:3"
 
-#: internet/groovesharkservice.cpp:985
+#: internet/groovesharkservice.cpp:994
 #: internet/magnatunedownloaddialog.cpp:225 library/libraryview.cpp:465
 #: ui/mainwindow.cpp:1748 ui/mainwindow.cpp:1869
 msgid "Error"
@@ -1758,7 +1764,7 @@ msgstr "Error carregant %1"
 msgid "Error loading di.fm playlist"
 msgstr "S'ha produït un error en descarregar la llista de reproducció de di.fm"
 
-#: transcoder/transcoder.cpp:393
+#: transcoder/transcoder.cpp:395
 #, qt-format
 msgid "Error processing %1: %2"
 msgstr "Error processant %1: %2"
@@ -1909,19 +1915,19 @@ msgstr "Extensió del fitxer"
 msgid "File formats"
 msgstr "Format dels fitxers"
 
-#: playlist/playlist.cpp:1154 ../bin/src/ui_edittagdialog.h:650
+#: playlist/playlist.cpp:1184 ../bin/src/ui_edittagdialog.h:650
 msgid "File name"
 msgstr "Nom del fitxer"
 
-#: playlist/playlist.cpp:1155
+#: playlist/playlist.cpp:1185
 msgid "File name (without path)"
 msgstr "Nom del fitxer (sense la ruta)"
 
-#: playlist/playlist.cpp:1156 ../bin/src/ui_edittagdialog.h:644
+#: playlist/playlist.cpp:1186 ../bin/src/ui_edittagdialog.h:644
 msgid "File size"
 msgstr "Mida del fitxer"
 
-#: playlist/playlist.cpp:1157 ../bin/src/ui_groupbydialog.h:133
+#: playlist/playlist.cpp:1187 ../bin/src/ui_groupbydialog.h:133
 #: ../bin/src/ui_groupbydialog.h:146 ../bin/src/ui_groupbydialog.h:159
 #: ../bin/src/ui_edittagdialog.h:646
 msgid "File type"
@@ -1959,7 +1965,7 @@ msgstr "Troba cançons a la biblioteca que es corresponguin amb els criteris de 
 msgid "Fingerprinting song"
 msgstr "S'està establint l'emprenta digital a la cançó"
 
-#: smartplaylists/wizard.cpp:79
+#: smartplaylists/wizard.cpp:80
 msgid "Finish"
 msgstr "Finalitzat"
 
@@ -2031,7 +2037,7 @@ msgstr ""
 msgid "Friends"
 msgstr "Amics"
 
-#: ../bin/src/ui_appearancesettingspage.h:251
+#: moodbar/moodbarrenderer.cpp:157
 msgid "Frozen"
 msgstr ""
 
@@ -2059,7 +2065,7 @@ msgstr "General"
 msgid "General settings"
 msgstr "Arranjaments generals"
 
-#: playlist/playlist.cpp:1141 ui/organisedialog.cpp:64
+#: playlist/playlist.cpp:1171 ui/organisedialog.cpp:64
 #: ../bin/src/ui_groupbydialog.h:134 ../bin/src/ui_groupbydialog.h:147
 #: ../bin/src/ui_groupbydialog.h:160 ../bin/src/ui_edittagdialog.h:660
 msgid "Genre"
@@ -2069,11 +2075,11 @@ msgstr "Gènere"
 msgid "Get a URL to share this Grooveshark playlist"
 msgstr ""
 
-#: internet/groovesharkservice.cpp:518 internet/groovesharkservice.cpp:1066
+#: internet/groovesharkservice.cpp:518 internet/groovesharkservice.cpp:1075
 msgid "Get a URL to share this Grooveshark song"
 msgstr ""
 
-#: internet/groovesharkservice.cpp:738
+#: internet/groovesharkservice.cpp:743
 msgid "Getting Grooveshark popular songs"
 msgstr ""
 
@@ -2119,7 +2125,7 @@ msgstr "Grooveshark"
 msgid "Grooveshark login error"
 msgstr "S'ha produït un error en iniciar sessió a Grooveshark"
 
-#: internet/groovesharkservice.cpp:1118
+#: internet/groovesharkservice.cpp:1127
 msgid "Grooveshark playlist's URL"
 msgstr ""
 
@@ -2127,7 +2133,7 @@ msgstr ""
 msgid "Grooveshark radio"
 msgstr "Ràdio de Grooveshark"
 
-#: internet/groovesharkservice.cpp:1096
+#: internet/groovesharkservice.cpp:1105
 msgid "Grooveshark song's URL"
 msgstr ""
 
@@ -2171,7 +2177,7 @@ msgstr ""
 msgid "HTTP proxy"
 msgstr "Proxy HTTP"
 
-#: ../bin/src/ui_appearancesettingspage.h:252
+#: moodbar/moodbarrenderer.cpp:158
 msgid "Happy"
 msgstr ""
 
@@ -2405,7 +2411,7 @@ msgstr "Caràtula gran de l'àlbum"
 msgid "Large sidebar"
 msgstr "Barra lateral gran"
 
-#: library/library.cpp:69 playlist/playlist.cpp:1148
+#: library/library.cpp:69 playlist/playlist.cpp:1178
 #: ../bin/src/ui_edittagdialog.h:641
 msgid "Last played"
 msgstr "Últim reproduït"
@@ -2484,7 +2490,7 @@ msgstr ""
 msgid "Leave blank for the default.  Examples: \"/dev/dsp\", \"front\", etc."
 msgstr "Deixar-ho en blanc per assignar el valor per defecte. Exemples : \"/dev/dsp\", \"front\", etc."
 
-#: playlist/playlist.cpp:1137 ui/organisedialog.cpp:66
+#: playlist/playlist.cpp:1167 ui/organisedialog.cpp:66
 #: ui/qtsystemtrayicon.cpp:255 ../bin/src/ui_edittagdialog.h:636
 msgid "Length"
 msgstr "Durada"
@@ -2566,7 +2572,7 @@ msgstr "Carregant la base de dades de l'iPod"
 msgid "Loading smart playlist"
 msgstr "S'està carregant la llista de reproducció inteŀligent"
 
-#: library/librarymodel.cpp:134
+#: library/librarymodel.cpp:135
 msgid "Loading songs"
 msgstr "Carregant les cançons"
 
@@ -2583,7 +2589,7 @@ msgstr "Carregant pistes"
 msgid "Loading tracks info"
 msgstr "Carregant la informació de les pistes"
 
-#: library/librarymodel.cpp:129 podcasts/podcastdiscoverymodel.cpp:97
+#: library/librarymodel.cpp:130 podcasts/podcastdiscoverymodel.cpp:97
 #: widgets/prettyimage.cpp:168 widgets/widgetfadehelper.cpp:99
 #: ../bin/src/ui_addpodcastdialog.h:180 ../bin/src/ui_searchpreview.h:106
 msgid "Loading..."
@@ -2747,7 +2753,7 @@ msgstr "Model"
 msgid "Monitor the library for changes"
 msgstr "Monitoritza els canvis en la biblioteca"
 
-#: ../bin/src/ui_playbacksettingspage.h:293
+#: ../bin/src/ui_playbacksettingspage.h:296
 msgid "Mono playback"
 msgstr ""
 
@@ -2755,12 +2761,13 @@ msgstr ""
 msgid "Months"
 msgstr "Mesos"
 
-#: playlist/playlist.cpp:1163
+#: playlist/playlist.cpp:1193
 msgid "Mood"
 msgstr ""
 
 #: ../bin/src/ui_appearancesettingspage.h:246
-msgid "Moodbar style:"
+#: moodbar/moodbarproxystyle.cpp:342
+msgid "Moodbar style"
 msgstr ""
 
 #: ../bin/src/ui_appearancesettingspage.h:244
@@ -2771,7 +2778,7 @@ msgstr ""
 msgid "Most played"
 msgstr "Més reproduïdes"
 
-#: devices/giolister.cpp:157
+#: devices/giolister.cpp:159
 msgid "Mount point"
 msgstr "Punt de muntatge"
 
@@ -2838,7 +2845,7 @@ msgstr "La meva emissora de ràdio"
 msgid "My Recommendations"
 msgstr "Les meves recomanacions"
 
-#: internet/groovesharkservice.cpp:1202 internet/groovesharkservice.cpp:1296
+#: internet/groovesharkservice.cpp:1211 internet/groovesharkservice.cpp:1305
 #: ui/equalizer.cpp:172 ../bin/src/ui_deviceproperties.h:369
 #: ../bin/src/ui_magnatunedownloaddialog.h:135
 #: ../bin/src/ui_wizardfinishpage.h:84
@@ -2938,7 +2945,7 @@ msgstr "Cap"
 msgid "None of the selected songs were suitable for copying to a device"
 msgstr ""
 
-#: ../bin/src/ui_appearancesettingspage.h:249
+#: moodbar/moodbarrenderer.cpp:155
 msgid "Normal"
 msgstr ""
 
@@ -3154,7 +3161,7 @@ msgstr "Reprodueix Artista o Etiqueta"
 msgid "Play artist radio..."
 msgstr "Reprodueix la radio de l'artista"
 
-#: playlist/playlist.cpp:1146 ../bin/src/ui_edittagdialog.h:637
+#: playlist/playlist.cpp:1176 ../bin/src/ui_edittagdialog.h:637
 msgid "Play count"
 msgstr "Comptador de reproduccions"
 
@@ -3208,7 +3215,7 @@ msgstr "Opcions de la llista de reproducció"
 msgid "Playlist search"
 msgstr "Buscar llista de reproducció"
 
-#: smartplaylists/wizard.cpp:71
+#: smartplaylists/wizard.cpp:72
 msgid "Playlist type"
 msgstr "Tipus de llista de reproducció"
 
@@ -3406,7 +3413,7 @@ msgstr "Puntua la cançó actual amb 4 estrelles"
 msgid "Rate the current song 5 stars"
 msgstr "Puntua la cançó actual amb 5 estrelles"
 
-#: playlist/playlist.cpp:1145 ../bin/src/ui_edittagdialog.h:645
+#: playlist/playlist.cpp:1175 ../bin/src/ui_edittagdialog.h:645
 msgid "Rating"
 msgstr "Puntuació"
 
@@ -3476,11 +3483,11 @@ msgstr "Suprimeix de la llista de reproducció"
 msgid "Remove playlist"
 msgstr "Suprimeix la llista de reproducció"
 
-#: internet/groovesharkservice.cpp:1411
+#: internet/groovesharkservice.cpp:1420
 msgid "Removing song from favorites"
 msgstr "S'està eliminat la cançó de la llista de preferides"
 
-#: internet/groovesharkservice.cpp:1295
+#: internet/groovesharkservice.cpp:1304
 #, qt-format
 msgid "Rename \"%1\" playlist"
 msgstr "Reanomena la llista de reproducció \"%1\""
@@ -3587,7 +3594,7 @@ msgstr "Treure el dispositiu amb seguretat"
 msgid "Safely remove the device after copying"
 msgstr "Treure el dispositiu amb seguretat després de copiar"
 
-#: playlist/playlist.cpp:1153 ../bin/src/ui_edittagdialog.h:642
+#: playlist/playlist.cpp:1183 ../bin/src/ui_edittagdialog.h:642
 msgid "Sample rate"
 msgstr "Freqüència de mostreig"
 
@@ -3595,7 +3602,7 @@ msgstr "Freqüència de mostreig"
 msgid "Samplerate"
 msgstr "Freqüència de mostreig"
 
-#: ../bin/src/ui_appearancesettingspage.h:255
+#: ../bin/src/ui_appearancesettingspage.h:247
 msgid "Save .mood files in your music library"
 msgstr ""
 
@@ -3635,7 +3642,7 @@ msgstr "S'estan desant les pistes"
 msgid "Scalable sampling rate profile (SSR)"
 msgstr "Perfil de freqüència de mostreig escalable (SSR)"
 
-#: playlist/playlist.cpp:1149 ../bin/src/ui_edittagdialog.h:643
+#: playlist/playlist.cpp:1179 ../bin/src/ui_edittagdialog.h:643
 msgid "Score"
 msgstr "Puntuació"
 
@@ -3650,7 +3657,7 @@ msgid "Search"
 msgstr "Cercar"
 
 #: internet/groovesharksearchplaylisttype.cpp:32
-#: internet/groovesharkservice.cpp:963
+#: internet/groovesharkservice.cpp:972
 msgid "Search Grooveshark"
 msgstr "Cerca a Grooveshark"
 
@@ -3706,11 +3713,11 @@ msgstr ""
 msgid "Search mode"
 msgstr "Mode de cerca"
 
-#: smartplaylists/querywizardplugin.cpp:151
+#: smartplaylists/querywizardplugin.cpp:153
 msgid "Search options"
 msgstr "Opcions de cerca"
 
-#: smartplaylists/querywizardplugin.cpp:149
+#: smartplaylists/querywizardplugin.cpp:151
 #: ../bin/src/ui_querysearchpage.h:120
 msgid "Search terms"
 msgstr "Termes de cerca"
@@ -3880,6 +3887,10 @@ msgstr ""
 msgid "Show in various artists"
 msgstr "Mostra a Artiste"
 
+#: moodbar/moodbarproxystyle.cpp:337
+msgid "Show moodbar"
+msgstr ""
+
 #: ui/mainwindow.cpp:444
 msgid "Show only duplicates"
 msgstr ""
@@ -3952,7 +3963,7 @@ msgstr "Ska"
 msgid "Skip backwards in playlist"
 msgstr "Salta enrere en la llista de reproducció"
 
-#: playlist/playlist.cpp:1147 ../bin/src/ui_edittagdialog.h:639
+#: playlist/playlist.cpp:1177 ../bin/src/ui_edittagdialog.h:639
 msgid "Skip count"
 msgstr ""
 
@@ -3968,11 +3979,11 @@ msgstr "Caràtula petita"
 msgid "Small sidebar"
 msgstr ""
 
-#: smartplaylists/wizard.cpp:67
+#: smartplaylists/wizard.cpp:68
 msgid "Smart playlist"
 msgstr "Llista de reproducció inteŀligent"
 
-#: library/librarymodel.cpp:1128
+#: library/librarymodel.cpp:1156
 msgid "Smart playlists"
 msgstr "Llistes de reproducció inteŀligents"
 
@@ -4020,7 +4031,7 @@ msgstr "Ordena les cançons per"
 msgid "Sorting"
 msgstr "Endreçant"
 
-#: playlist/playlist.cpp:1162
+#: playlist/playlist.cpp:1192
 msgid "Source"
 msgstr "Font"
 
@@ -4070,7 +4081,7 @@ msgstr "Inicia transcodificació"
 msgid "Start typing in the search box above to find music on %1."
 msgstr ""
 
-#: transcoder/transcoder.cpp:399
+#: transcoder/transcoder.cpp:401
 #, qt-format
 msgid "Starting %1"
 msgstr "Començarà %1"
@@ -4124,7 +4135,7 @@ msgstr ""
 msgid "Subscribers"
 msgstr ""
 
-#: transcoder/transcoder.cpp:198
+#: transcoder/transcoder.cpp:200
 #, qt-format
 msgid "Successfully written %1"
 msgstr "Escrit satisfactòriament %1"
@@ -4168,7 +4179,7 @@ msgstr "S'està sincronitzant la llista de reproducció de Spotify"
 msgid "Syncing Spotify starred tracks"
 msgstr "S'estan sincronitzant les pistes destacades de Spotify"
 
-#: ../bin/src/ui_appearancesettingspage.h:253
+#: moodbar/moodbarrenderer.cpp:159
 msgid "System colors"
 msgstr ""
 
@@ -4357,13 +4368,13 @@ msgstr ""
 msgid "Timezone"
 msgstr "Zona horària"
 
-#: playlist/playlist.cpp:1134 ui/organisedialog.cpp:54
+#: playlist/playlist.cpp:1164 ui/organisedialog.cpp:54
 #: ui/qtsystemtrayicon.cpp:248 ../bin/src/ui_about.h:142
 #: ../bin/src/ui_edittagdialog.h:652 ../bin/src/ui_trackselectiondialog.h:211
 msgid "Title"
 msgstr "Títol"
 
-#: internet/groovesharkservice.cpp:986
+#: internet/groovesharkservice.cpp:995
 msgid ""
 "To start Grooveshark radio, you should first listen to a few other "
 "Grooveshark songs"
@@ -4405,7 +4416,7 @@ msgstr "Bytes totals transferits"
 msgid "Total network requests made"
 msgstr ""
 
-#: playlist/playlist.cpp:1138 ui/organisedialog.cpp:60
+#: playlist/playlist.cpp:1168 ui/organisedialog.cpp:60
 #: ../bin/src/ui_edittagdialog.h:653 ../bin/src/ui_trackselectiondialog.h:213
 msgid "Track"
 msgstr "Pista"
@@ -4422,7 +4433,7 @@ msgstr "Registre del transcodificador"
 msgid "Transcoding"
 msgstr "Transcodificació"
 
-#: transcoder/transcoder.cpp:307
+#: transcoder/transcoder.cpp:309
 #, qt-format
 msgid "Transcoding %1 files using %2 threads"
 msgstr "S'estan transcodificant %1 arxius emprant %2 fils"
@@ -4443,7 +4454,7 @@ msgstr "Turbina"
 msgid "Turn off"
 msgstr "Atura"
 
-#: devices/giolister.cpp:159
+#: devices/giolister.cpp:161
 msgid "URI"
 msgstr "URI"
 
@@ -4461,8 +4472,8 @@ msgid "Unable to download %1 (%2)"
 msgstr "No es pot descarregar %1 (%2)"
 
 #: core/song.cpp:330 globalsearch/globalsearchitemdelegate.cpp:166
-#: globalsearch/globalsearchitemdelegate.cpp:173 library/librarymodel.cpp:296
-#: library/librarymodel.cpp:301 library/librarymodel.cpp:926
+#: globalsearch/globalsearchitemdelegate.cpp:173 library/librarymodel.cpp:297
+#: library/librarymodel.cpp:302 library/librarymodel.cpp:954
 #: playlist/playlistdelegates.cpp:309 playlist/playlistmanager.cpp:387
 #: playlist/playlistmanager.cpp:390 ui/albumcoverchoicecontroller.cpp:110
 #: ui/edittagdialog.cpp:415 ui/edittagdialog.cpp:456
@@ -4485,7 +4496,11 @@ msgstr ""
 msgid "Unsubscribe"
 msgstr ""
 
-#: internet/groovesharkservice.cpp:1156
+#: songinfo/songkickconcerts.cpp:154
+msgid "Upcoming Concerts"
+msgstr ""
+
+#: internet/groovesharkservice.cpp:1165
 msgid "Update Grooveshark playlist"
 msgstr ""
 
@@ -4621,7 +4636,7 @@ msgstr "VBR MP3"
 msgid "Variable bit rate"
 msgstr "Taxa de bits variable"
 
-#: globalsearch/globalsearchitemdelegate.cpp:162 library/librarymodel.cpp:233
+#: globalsearch/globalsearchitemdelegate.cpp:162 library/librarymodel.cpp:234
 #: playlist/playlistmanager.cpp:402 ui/albumcovermanager.cpp:258
 msgid "Various artists"
 msgstr "Artistes varis"
@@ -4763,7 +4778,7 @@ msgstr ""
 msgid "Would you like to run a full rescan right now?"
 msgstr ""
 
-#: playlist/playlist.cpp:1140 ui/organisedialog.cpp:63
+#: playlist/playlist.cpp:1170 ui/organisedialog.cpp:63
 #: ../bin/src/ui_groupbydialog.h:135 ../bin/src/ui_groupbydialog.h:148
 #: ../bin/src/ui_groupbydialog.h:161 ../bin/src/ui_edittagdialog.h:657
 #: ../bin/src/ui_trackselectiondialog.h:212
@@ -5014,8 +5029,9 @@ msgid "longest first"
 msgstr ""
 
 #: playlist/playlistundocommands.cpp:99
-msgid "move songs"
-msgstr "moure cançons"
+#, c-format
+msgid "move %n songs"
+msgstr ""
 
 #: smartplaylists/searchterm.cpp:289
 msgid "newest first"
@@ -5058,9 +5074,17 @@ msgstr "elimina %n cançons"
 msgid "shortest first"
 msgstr "els més curts primer"
 
+#: playlist/playlistundocommands.cpp:138
+msgid "shuffle songs"
+msgstr ""
+
 #: smartplaylists/searchterm.cpp:292
 msgid "smallest first"
 msgstr "els més petits primer"
+
+#: playlist/playlistundocommands.cpp:131
+msgid "sort songs"
+msgstr ""
 
 #: smartplaylists/searchterm.cpp:214
 msgid "starts with"

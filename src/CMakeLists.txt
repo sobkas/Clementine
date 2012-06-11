@@ -101,6 +101,7 @@ set(SOURCES
   core/qxtglobalshortcutbackend.cpp
   core/scopedtransaction.cpp
   core/settingsprovider.cpp
+  core/signalchecker.cpp
   core/song.cpp
   core/songloader.cpp
   core/stylesheetloader.cpp
@@ -276,6 +277,7 @@ set(SOURCES
   songinfo/songinfosettingspage.cpp
   songinfo/songinfotextview.cpp
   songinfo/songinfoview.cpp
+  songinfo/songkickconcerts.cpp
   songinfo/songplaystats.cpp
   songinfo/twitterartistinfo.cpp
   songinfo/ultimatelyricsprovider.cpp
@@ -529,6 +531,7 @@ set(HEADERS
   songinfo/songinfosettingspage.h
   songinfo/songinfotextview.h
   songinfo/songinfoview.h
+  songinfo/songkickconcerts.h
   songinfo/songplaystats.h
   songinfo/twitterartistinfo.h
   songinfo/ultimatelyricsprovider.h

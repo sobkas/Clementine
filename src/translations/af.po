@@ -3,7 +3,7 @@
 # This file is distributed under the same license as the Clementine package.
 # 
 # Translators:
-# FIRST AUTHOR <EMAIL@ADDRESS>, 2011.
+#   <jpmeijers@gmail.com>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: Clementine Music Player\n"
@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: Clementine Buildbot <clementinebuildbot@davidsansome.com>\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: bn\n"
+"Language: af\n"
 "Plural-Forms: nplurals=2; plural=(n != 1)\n"
 
 #: ../bin/src/ui_podcastsettingspage.h:246
@@ -28,41 +28,41 @@ msgstr ""
 #: ../bin/src/ui_transcoderoptionsvorbis.h:211
 #: ../bin/src/ui_transcoderoptionswma.h:80
 msgid " kbps"
-msgstr " কেবিপিএস"
+msgstr "kbps"
 
 #: ../bin/src/ui_songinfosettingspage.h:186
 #: ../bin/src/ui_playbacksettingspage.h:272
 #: ../bin/src/ui_playbacksettingspage.h:292
 msgid " ms"
-msgstr " মিলিসেকেন্ড"
+msgstr "ms"
 
 #: ../bin/src/ui_songinfosettingspage.h:182
 msgid " pt"
-msgstr " পয়েন্ট"
+msgstr ""
 
 #: ../bin/src/ui_notificationssettingspage.h:411
 #: ../bin/src/ui_visualisationselector.h:116
 msgid " seconds"
-msgstr " সেকেন্ড"
+msgstr "sekondes"
 
 #: ../bin/src/ui_querysortpage.h:143
 msgid " songs"
-msgstr " গান"
+msgstr "liedjies"
 
 #: widgets/osd.cpp:188
 #, qt-format
 msgid "%1 albums"
-msgstr "%1 অ্যালবামস"
+msgstr "%1 albums"
 
 #: core/utilities.cpp:103
 #, qt-format
 msgid "%1 days"
-msgstr "%1 দিন"
+msgstr "%1 dae"
 
 #: core/utilities.cpp:124
 #, qt-format
 msgid "%1 days ago"
-msgstr "%1 দিন পুরানো"
+msgstr "%1 dae terug"
 
 #: podcasts/gpoddersync.cpp:79
 #, qt-format
@@ -72,58 +72,58 @@ msgstr ""
 #: playlistparsers/playlistparser.cpp:74
 #, qt-format
 msgid "%1 playlists (%2)"
-msgstr "%1 প্লে লিস্ট (%2)"
+msgstr ""
 
 #: playlist/playlistmanager.cpp:308
 #, qt-format
 msgid "%1 selected of"
-msgstr "%1 সিলেক্ট অফ"
+msgstr ""
 
 #: devices/deviceview.cpp:123
 #, qt-format
 msgid "%1 song"
-msgstr "%1 গান"
+msgstr ""
 
 #: devices/deviceview.cpp:125
 #, qt-format
 msgid "%1 songs"
-msgstr "%1 গান"
+msgstr ""
 
 #: smartplaylists/searchpreview.cpp:133
 #, qt-format
 msgid "%1 songs found"
-msgstr "%1 গান পাওয়া গেছে"
+msgstr ""
 
 #: smartplaylists/searchpreview.cpp:130
 #, qt-format
 msgid "%1 songs found (showing %2)"
-msgstr "%1 গান পাওয়া গেছে ( দৃশ্যমান %2)"
+msgstr ""
 
 #: playlist/playlistmanager.cpp:314
 #, qt-format
 msgid "%1 tracks"
-msgstr "%1 ট্রাকস"
+msgstr ""
 
 #: ui/albumcovermanager.cpp:430
 #, qt-format
 msgid "%1 transferred"
-msgstr "%1 ট্রানসফারড"
+msgstr ""
 
 #: widgets/osd.cpp:238 widgets/osd.cpp:243 widgets/osd.cpp:248
 #: widgets/osd.cpp:253 widgets/osd.cpp:258 widgets/osd.cpp:263
 #, qt-format
 msgid "%1: Wiimotedev module"
-msgstr "%1 উইমটে ডেভ মডউল"
+msgstr ""
 
 #: songinfo/lastfmtrackinfoprovider.cpp:102
 #, qt-format
 msgid "%L1 other listeners"
-msgstr "%L1 অন্য শ্রোতা"
+msgstr ""
 
 #: songinfo/lastfmtrackinfoprovider.cpp:100
 #, qt-format
 msgid "%L1 total plays"
-msgstr "%L1 টোটাল প্লে"
+msgstr ""
 
 #: ../bin/src/ui_notificationssettingspage.h:399
 msgid "%filename%"
@@ -132,29 +132,29 @@ msgstr ""
 #: transcoder/transcodedialog.cpp:199
 #, c-format
 msgid "%n failed"
-msgstr "%n অসফল"
+msgstr ""
 
 #: transcoder/transcodedialog.cpp:194
 #, c-format
 msgid "%n finished"
-msgstr "%n সমাপ্ত"
+msgstr ""
 
 #: transcoder/transcodedialog.cpp:189
 #, c-format
 msgid "%n remaining"
-msgstr "%n বাকি আছে"
+msgstr ""
 
 #: playlist/playlistheader.cpp:37
 msgid "&Align text"
-msgstr "&আল্যাইন টেক্সট"
+msgstr ""
 
 #: playlist/playlistheader.cpp:40
 msgid "&Center"
-msgstr "&সেন্টার"
+msgstr ""
 
 #: ../bin/src/ui_globalshortcutssettingspage.h:178
 msgid "&Custom"
-msgstr "&কাস্টম"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:720
 msgid "&Extras"
@@ -162,20 +162,20 @@ msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:719
 msgid "&Help"
-msgstr "&সহায়িকা"
+msgstr ""
 
 #: playlist/playlistheader.cpp:70
 #, qt-format
 msgid "&Hide %1"
-msgstr "&গোপন %1"
+msgstr ""
 
 #: playlist/playlistheader.cpp:33
 msgid "&Hide..."
-msgstr "&গোপন"
+msgstr ""
 
 #: playlist/playlistheader.cpp:39
 msgid "&Left"
-msgstr "বাঁদিকে (&ব)"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:717
 msgid "&Music"
@@ -183,7 +183,7 @@ msgstr ""
 
 #: ../bin/src/ui_globalshortcutssettingspage.h:176
 msgid "&None"
-msgstr "কিছু &নয়"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:718
 msgid "&Playlist"
@@ -191,7 +191,7 @@ msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:653
 msgid "&Quit"
-msgstr "প্রস্থান করো"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:690
 msgid "&Repeat mode"
@@ -199,7 +199,7 @@ msgstr ""
 
 #: playlist/playlistheader.cpp:41
 msgid "&Right"
-msgstr "ডানদিকে (&ড)"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:689
 msgid "&Shuffle mode"
@@ -207,40 +207,40 @@ msgstr ""
 
 #: playlist/playlistheader.cpp:34
 msgid "&Stretch columns to fit window"
-msgstr "& সামঞ্জস্য পূর্ণ প্রসারণ - উইন্ডো অনুপাতে"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:721
 msgid "&Tools"
-msgstr "&সরঞ্জামসমূহ"
+msgstr ""
 
 #: ui/edittagdialog.cpp:48
 msgid "(different across multiple songs)"
-msgstr "আনুপূর্বিক তফাৎ"
+msgstr ""
 
 #: ui/about.cpp:76
 msgid "...and all the Amarok contributors"
-msgstr "এবং অন্য সমস্ত এমরক সহযোগকারি গন"
+msgstr "...en almal wat bygedra het tot Amarok"
 
 #: ../bin/src/ui_trackslider.h:70 ../bin/src/ui_trackslider.h:74
 msgid "0:00:00"
-msgstr "0:00:00"
+msgstr ""
 
 #: core/utilities.cpp:103
 msgid "1 day"
-msgstr "১ দিন"
+msgstr "1 dag"
 
 #: playlist/playlistmanager.cpp:314
 msgid "1 track"
-msgstr "১টি ট্র্যাক"
+msgstr "1 snit"
 
 #: ../bin/src/ui_magnatunedownloaddialog.h:143
 #: ../bin/src/ui_magnatunesettingspage.h:174
 msgid "128k MP3"
-msgstr "128 কেবিপিস এম পি থ্রী"
+msgstr "128k MP3"
 
 #: library/library.cpp:58
 msgid "50 random tracks"
-msgstr "50 অনবরত সঙ্গীত"
+msgstr "50 willekeurige snitte"
 
 #: ../bin/src/ui_digitallyimportedsettingspage.h:165
 msgid "<a href=\"http://www.di.fm/premium/\">Upgrade to Premium now</a>"
@@ -259,27 +259,27 @@ msgstr ""
 
 #: internet/spotifysettingspage.cpp:161
 msgid "A Spotify Premium account is required."
-msgstr "এক্ টি স্পটীফাই অ্যাকাউন্ট প্রয়োজন"
+msgstr ""
 
 #: smartplaylists/wizard.cpp:73
 msgid ""
 "A smart playlist is a dynamic list of songs that come from your library.  "
 "There are different types of smart playlist that offer different ways of "
 "selecting songs."
-msgstr "এক টি স্মার্ট প্লে লিস্ট আপনার সঙ্গীত সংগ্রহ থেকে সৃষ্টি হয়। স্মার্ট প্লে লিস্ট আপনাকে বিভিন্ন ভাবে সঙ্গীত চয়ন করার সুবিধা দেয় ।"
+msgstr ""
 
 #: smartplaylists/querywizardplugin.cpp:152
 msgid ""
 "A song will be included in the playlist if it matches these conditions."
-msgstr "এক টি সঙ্গীত প্লে লিস্ট এ অন্তর্ভুক্ত হয় যদি কিনা মান গুলি ঠিক পুরন করে।"
+msgstr ""
 
 #: smartplaylists/searchterm.cpp:288
 msgid "A-Z"
-msgstr "এ থেকে জেড পর্যন্ত"
+msgstr ""
 
 #: ../bin/src/ui_transcodersettingspage.h:163
 msgid "AAC"
-msgstr "এ এ সি"
+msgstr ""
 
 #: ../bin/src/ui_digitallyimportedsettingspage.h:179
 msgid "AAC 128k"
@@ -295,7 +295,7 @@ msgstr ""
 
 #: core/song.cpp:321
 msgid "AIFF"
-msgstr "এআইএফএফ"
+msgstr ""
 
 #: widgets/nowplayingwidget.cpp:119
 msgid "ALL GLORY TO THE HYPNOTOAD"
@@ -304,22 +304,22 @@ msgstr ""
 #: ui/about.cpp:32
 #, qt-format
 msgid "About %1"
-msgstr "%1-এর সম্বন্ধে"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:674
 msgid "About Clementine..."
-msgstr "ক্লেমেন্টাইন সন্মন্ধে"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:708
 msgid "About Qt..."
-msgstr "কিউ টি সন্মন্ধে"
+msgstr ""
 
 #: ../bin/src/ui_groovesharksettingspage.h:113
 #: ../bin/src/ui_magnatunesettingspage.h:155
 #: ../bin/src/ui_spotifysettingspage.h:209
 #: ../bin/src/ui_lastfmsettingspage.h:151
 msgid "Account details"
-msgstr "অ্যাকাউন্ট সন্মন্ধে"
+msgstr ""
 
 #: ../bin/src/ui_digitallyimportedsettingspage.h:161
 msgid "Account details (Premium)"
@@ -327,11 +327,11 @@ msgstr ""
 
 #: ../bin/src/ui_wiimotesettingspage.h:191
 msgid "Action"
-msgstr "পদক্ষেপ"
+msgstr ""
 
 #: wiimotedev/wiimotesettingspage.cpp:98
 msgid "Active/deactive Wiiremote"
-msgstr "কার্যকরী / অকার্যকরী অয়্যারমোট"
+msgstr ""
 
 #: podcasts/addpodcastdialog.cpp:54
 msgid "Add Podcast"
@@ -339,15 +339,15 @@ msgstr ""
 
 #: ../bin/src/ui_addstreamdialog.h:113
 msgid "Add Stream"
-msgstr "সঙ্গীত যোগ করুন"
+msgstr ""
 
 #: ../bin/src/ui_notificationssettingspage.h:397
 msgid "Add a new line if supported by the notification type"
-msgstr "যদি নোটিফিকেশান টাইপ সাপোর্ট করে তাবে এক্ টি নতুন লাইন যোগ করুন"
+msgstr ""
 
 #: ../bin/src/ui_wiimotesettingspage.h:193
 msgid "Add action"
-msgstr "পদক্ষেপ গ্রহন করুন"
+msgstr ""
 
 #: globalsearch/globalsearchwidget.cpp:104
 msgid "Add and play now"
@@ -355,11 +355,11 @@ msgstr ""
 
 #: internet/savedradio.cpp:103
 msgid "Add another stream..."
-msgstr "অন্য এক্ টি সঙ্গীত যোগ করুন"
+msgstr ""
 
 #: library/librarysettingspage.cpp:62
 msgid "Add directory..."
-msgstr "ডাইরেকট রি যোগ করুন"
+msgstr ""
 
 #: ui/mainwindow.cpp:1519
 msgid "Add file"
@@ -367,23 +367,23 @@ msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:678
 msgid "Add file..."
-msgstr "ফাইল যোগ করুন"
+msgstr ""
 
 #: transcoder/transcodedialog.cpp:211
 msgid "Add files to transcode"
-msgstr "অনুবাদ এর জন্য ফাইল যোগ করুন"
+msgstr ""
 
 #: ui/mainwindow.cpp:1547
 msgid "Add folder"
-msgstr "ফোল্ডার যোগ করুন"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:694
 msgid "Add folder..."
-msgstr "ফোল্ডার যুক্ত করুন..."
+msgstr ""
 
 #: ../bin/src/ui_librarysettingspage.h:159
 msgid "Add new folder..."
-msgstr "এক টি নতুন ফোল্ডার যোগ করুন"
+msgstr ""
 
 #: ../bin/src/ui_addpodcastdialog.h:179
 msgid "Add podcast"
@@ -399,23 +399,23 @@ msgstr ""
 
 #: ../bin/src/ui_notificationssettingspage.h:364
 msgid "Add song album tag"
-msgstr "গান এর ট্যাগ গুলি যোগ করুন"
+msgstr ""
 
 #: ../bin/src/ui_notificationssettingspage.h:370
 msgid "Add song albumartist tag"
-msgstr "গায়ক এর পরিচয় এর ট্যাগ লিপিবদ্ধ করুন"
+msgstr ""
 
 #: ../bin/src/ui_notificationssettingspage.h:361
 msgid "Add song artist tag"
-msgstr "গায়ক এর পরিচয়  লিপিবদ্ধ করুন"
+msgstr ""
 
 #: ../bin/src/ui_notificationssettingspage.h:376
 msgid "Add song composer tag"
-msgstr "পরিচালক এর ট্যাগ যুক্ত করুন"
+msgstr ""
 
 #: ../bin/src/ui_notificationssettingspage.h:379
 msgid "Add song disc tag"
-msgstr "সঙ্গীত এর ডিস্ক এর তথ্য লিপিবদ্ধ করুন"
+msgstr ""
 
 #: ../bin/src/ui_notificationssettingspage.h:401
 msgid "Add song filename"
@@ -423,35 +423,35 @@ msgstr ""
 
 #: ../bin/src/ui_notificationssettingspage.h:385
 msgid "Add song genre tag"
-msgstr "সঙ্গীত এর ধরন লিপিবদ্ধ করুন"
+msgstr ""
 
 #: ../bin/src/ui_notificationssettingspage.h:388
 msgid "Add song length tag"
-msgstr "সঙ্গীত এর সময় এর তথ্য লিপিবদ্ধ করুন"
+msgstr ""
 
 #: ../bin/src/ui_notificationssettingspage.h:391
 msgid "Add song play count"
-msgstr "স্রুতসঙ্গীত এর সংখ্যা"
+msgstr ""
 
 #: ../bin/src/ui_notificationssettingspage.h:394
 msgid "Add song skip count"
-msgstr "অস্রুতসঙ্গীত এর সংখ্যা"
+msgstr ""
 
 #: ../bin/src/ui_notificationssettingspage.h:367
 msgid "Add song title tag"
-msgstr "সঙ্গীত টাইটল ট্যাগ যুক্ত করুন"
+msgstr ""
 
 #: ../bin/src/ui_notificationssettingspage.h:382
 msgid "Add song track tag"
-msgstr "সঙ্গীত এর ট্র্যাক ট্যাগ যুক্ত করুন"
+msgstr ""
 
 #: ../bin/src/ui_notificationssettingspage.h:373
 msgid "Add song year tag"
-msgstr "সঙ্গীত এর প্রকাশ কাল ট্যাগ যুক্ত করুন"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:680
 msgid "Add stream..."
-msgstr "সঙ্গীত এর ধারা যুক্ত করুন"
+msgstr ""
 
 #: internet/groovesharkservice.cpp:1058
 msgid "Add to Grooveshark favorites"
@@ -463,45 +463,45 @@ msgstr ""
 
 #: ui/mainwindow.cpp:1344
 msgid "Add to another playlist"
-msgstr "অন্য প্লে লিস্ট যুক্ত করুন"
+msgstr ""
 
 #: globalsearch/globalsearchwidget.cpp:103
 #: ../bin/src/ui_albumcovermanager.h:152
 msgid "Add to playlist"
-msgstr "প্লে লিস্ট যোগ করুন"
+msgstr ""
 
 #: ../bin/src/ui_behavioursettingspage.h:196
 msgid "Add to the queue"
-msgstr "সঙ্গীত ধারাবাহিকতায় যুক্ত করুন"
+msgstr ""
 
 #: ../bin/src/ui_wiimoteshortcutgrabber.h:123
 msgid "Add wiimotedev action"
-msgstr "উইমোটেডেভ সংযুক্ত করুন"
+msgstr ""
 
 #: ../bin/src/ui_transcodedialog.h:206
 msgid "Add..."
-msgstr "যোগ..."
+msgstr ""
 
 #: ../bin/src/ui_libraryfilterwidget.h:123
 msgid "Added this month"
-msgstr "এই মাসে প্রকাশিত"
+msgstr ""
 
 #: ../bin/src/ui_libraryfilterwidget.h:117
 msgid "Added this week"
-msgstr "এই সপ্তাহে প্রকাশিত"
+msgstr ""
 
 #: ../bin/src/ui_libraryfilterwidget.h:122
 msgid "Added this year"
-msgstr "এই বছর প্রকাশিত"
+msgstr ""
 
 #: ../bin/src/ui_libraryfilterwidget.h:116
 msgid "Added today"
-msgstr "আজ প্রকাশিত"
+msgstr ""
 
 #: ../bin/src/ui_libraryfilterwidget.h:118
 #: ../bin/src/ui_libraryfilterwidget.h:120
 msgid "Added within three months"
-msgstr "বিগত তিন মাসে প্রকাশিত"
+msgstr ""
 
 #: internet/groovesharkservice.cpp:1338
 msgid "Adding song to favorites"
@@ -509,7 +509,7 @@ msgstr ""
 
 #: ../bin/src/ui_libraryfilterwidget.h:130
 msgid "Advanced grouping..."
-msgstr "অত্যাধুনিক সঞ্জুক্তিকরন"
+msgstr ""
 
 #: ../bin/src/ui_podcastsettingspage.h:247
 msgid "After "
@@ -517,7 +517,7 @@ msgstr ""
 
 #: ../bin/src/ui_organisedialog.h:190
 msgid "After copying..."
-msgstr "কপি হওয়ার পর"
+msgstr ""
 
 #: playlist/playlist.cpp:1166 ui/organisedialog.cpp:55
 #: ui/qtsystemtrayicon.cpp:252 ../bin/src/ui_groupbydialog.h:129
@@ -526,17 +526,17 @@ msgstr "কপি হওয়ার পর"
 #: ../bin/src/ui_albumcoversearcher.h:113 ../bin/src/ui_edittagdialog.h:656
 #: ../bin/src/ui_trackselectiondialog.h:209
 msgid "Album"
-msgstr "অ্যালবাম"
+msgstr ""
 
 #: ../bin/src/ui_playbacksettingspage.h:279
 msgid "Album (ideal loudness for all tracks)"
-msgstr "অ্যালবাম (পরিচ্ছন্ন আওয়াজ সমস্ত সঙ্গীত এর জন্য)"
+msgstr ""
 
 #: playlist/playlist.cpp:1172 ui/organisedialog.cpp:58
 #: ../bin/src/ui_groupbydialog.h:131 ../bin/src/ui_groupbydialog.h:144
 #: ../bin/src/ui_groupbydialog.h:157 ../bin/src/ui_edittagdialog.h:658
 msgid "Album artist"
-msgstr "অ্যালবাম শিল্পী"
+msgstr ""
 
 #: ../bin/src/ui_appearancesettingspage.h:240
 msgid "Album cover"
@@ -544,19 +544,19 @@ msgstr ""
 
 #: internet/jamendoservice.cpp:411
 msgid "Album info on jamendo.com..."
-msgstr "জামেন্দ.কম এর অ্যালবাম তথ্য..."
+msgstr ""
 
 #: ui/albumcovermanager.cpp:121
 msgid "Albums with covers"
-msgstr "অ্যালবাম কভার"
+msgstr ""
 
 #: ui/albumcovermanager.cpp:122
 msgid "Albums without covers"
-msgstr "কভারবিহীন অ্যালবাম"
+msgstr ""
 
 #: ui/mainwindow.cpp:151
 msgid "All Files (*)"
-msgstr "সব ফাইল (*)"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:686
 msgid "All Glory to the Hypnotoad!"
@@ -564,81 +564,81 @@ msgstr ""
 
 #: ui/albumcovermanager.cpp:120
 msgid "All albums"
-msgstr "সমস্ত অ্যালবাম গুলি"
+msgstr ""
 
 #: ui/albumcovermanager.cpp:257
 msgid "All artists"
-msgstr "সমস্ত শিল্পীগণ"
+msgstr ""
 
 #: ui/albumcoverchoicecontroller.cpp:47
 msgid "All files (*)"
-msgstr "সর্বধরনের ফাইল (*)"
+msgstr ""
 
 #: playlistparsers/playlistparser.cpp:61
 #, qt-format
 msgid "All playlists (%1)"
-msgstr "সমস্ত প্লে লিস্ট (%1)"
+msgstr ""
 
 #: ui/about.cpp:73
 msgid "All the translators"
-msgstr "সমস্ত অনুবাদকগন"
+msgstr ""
 
 #: library/library.cpp:82
 msgid "All tracks"
-msgstr "সমস্ত ট্র্যাক গুলি"
+msgstr ""
 
 #: ../bin/src/ui_transcoderoptionsaac.h:140
 msgid "Allow mid/side encoding"
-msgstr "মধ্য/পার্শ্ববর্তী এনকোডিং অনুমোদন"
+msgstr ""
 
 #: ../bin/src/ui_transcodedialog.h:214
 msgid "Alongside the originals"
-msgstr "আসল টি র সমান্তরাল ভাবে"
+msgstr ""
 
 #: ../bin/src/ui_behavioursettingspage.h:180
 msgid "Always hide the main window"
-msgstr "স্থায়ী ভাবে মেন উইন্ডো সরিয়ে ফেলুন"
+msgstr ""
 
 #: ../bin/src/ui_behavioursettingspage.h:179
 msgid "Always show the main window"
-msgstr "স্থায়ী ভাবে মেন উইন্ডো বর্তমান রাখুন"
+msgstr ""
 
 #: ../bin/src/ui_behavioursettingspage.h:188
 #: ../bin/src/ui_behavioursettingspage.h:202
 msgid "Always start playing"
-msgstr "স্থায়ী ভাবে সঙ্গীত চালু রাখুন"
+msgstr ""
 
 #: internet/spotifyblobdownloader.cpp:60
 msgid ""
 "An additional plugin is required to use Spotify in Clementine.  Would you "
 "like to download and install it now?"
-msgstr "এক্ টি প্লাগ ইন প্রয়োজন। আপনি কি প্লাগ ইন টি ডাউনলোড করে ইন্সটল করতে ইচ্ছুক ?"
+msgstr ""
 
 #: devices/afcdevice.cpp:63
 msgid "An error occurred copying the iTunes database from the device"
-msgstr "iTune ডাটাবেস কপি করায় ত্রুটি র জন্য দুঃখিত ।"
+msgstr ""
 
 #: devices/afcdevice.cpp:157
 msgid "An error occurred copying the iTunes database onto the device"
-msgstr "iTune ডাটাবেস কপি করায় ত্রুটি র জন্য দুঃখিত ।"
+msgstr ""
 
 #: devices/gpodloader.cpp:61
 msgid "An error occurred loading the iTunes database"
-msgstr "iTune ডাটাবেস লোডইং ত্রুটি র জন্য দুঃখিত ।"
+msgstr ""
 
 #: ui/edittagdialog.cpp:654
 #, qt-format
 msgid "An error occurred writing metadata to '%1'"
-msgstr "ত্রুটি পূর্ণ মেটা ডাটা সংযুক্তি %1"
+msgstr ""
 
 #: internet/lastfmservice.cpp:916
 #, qt-format
 msgid "An unknown last.fm error occurred: %1"
-msgstr "এক্ টি অজানা সমস্যা হচ্ছে last.fm সংযুক্তি র সময় %1"
+msgstr ""
 
 #: ui/about.cpp:77
 msgid "And:"
-msgstr "এবং"
+msgstr ""
 
 #: moodbar/moodbarrenderer.cpp:156
 msgid "Angry"
@@ -647,29 +647,29 @@ msgstr ""
 #: ../bin/src/ui_songinfosettingspage.h:180
 #: ../bin/src/ui_appearancesettingspage.h:227
 msgid "Appearance"
-msgstr "উপস্থিতি"
+msgstr ""
 
 #: core/commandlineoptions.cpp:157
 msgid "Append files/URLs to the playlist"
-msgstr "ফাইল / ইউ আর এল প্লে লিস্ট এ সংযুক্তি করন"
+msgstr ""
 
 #: devices/deviceview.cpp:211 internet/internetservice.cpp:55
 #: library/libraryview.cpp:230 widgets/fileviewlist.cpp:32
 msgid "Append to current playlist"
-msgstr "প্লে লিস্ট এ সংযুক্তি করন"
+msgstr ""
 
 #: ../bin/src/ui_behavioursettingspage.h:193
 msgid "Append to the playlist"
-msgstr "প্লে লিস্ট এ সংযুক্তি করন"
+msgstr ""
 
 #: ../bin/src/ui_playbacksettingspage.h:282
 msgid "Apply compression to prevent clipping"
-msgstr "কম্প্রেসন যুক্ত করুন ।"
+msgstr ""
 
 #: ui/equalizer.cpp:191
 #, qt-format
 msgid "Are you sure you want to delete the \"%1\" preset?"
-msgstr "আপনি কি স্থায়ী ভাবে  %1 প্রেসেট টি ডিলিট করতে চান ?"
+msgstr ""
 
 #: internet/groovesharkservice.cpp:1259
 msgid "Are you sure you want to delete this playlist?"
@@ -677,7 +677,7 @@ msgstr ""
 
 #: ui/edittagdialog.cpp:760
 msgid "Are you sure you want to reset this song's statistics?"
-msgstr "আপনি কি গান গুলি র পরিসংখ্যান রিসেট করতে চান ?"
+msgstr ""
 
 #: playlist/playlist.cpp:1165 ui/organisedialog.cpp:56
 #: ui/qtsystemtrayicon.cpp:250 ../bin/src/ui_groupbydialog.h:130
@@ -687,11 +687,11 @@ msgstr "আপনি কি গান গুলি র পরিসংখ্য�
 #: ../bin/src/ui_trackselectiondialog.h:210
 #: ../bin/src/ui_lastfmstationdialog.h:96
 msgid "Artist"
-msgstr "শিল্পী"
+msgstr ""
 
 #: ui/mainwindow.cpp:232
 msgid "Artist info"
-msgstr "শিল্পী সম্পকিত তথ্য"
+msgstr ""
 
 #: internet/lastfmservice.cpp:209
 msgid "Artist radio"
@@ -1228,75 +1228,75 @@ msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:656
 msgid "Ctrl+Alt+V"
-msgstr "Ctrl+Alt+V"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:660
 msgid "Ctrl+B"
-msgstr "Ctrl+B"
+msgstr ""
 
 #: ../bin/src/ui_queuemanager.h:133
 msgid "Ctrl+Down"
-msgstr "Ctrl+Down"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:667
 msgid "Ctrl+E"
-msgstr "Ctrl+E"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:677
 msgid "Ctrl+H"
-msgstr "Ctrl+H"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:696
 msgid "Ctrl+J"
-msgstr "Ctrl+J"
+msgstr ""
 
 #: ../bin/src/ui_queuemanager.h:141 ../bin/src/ui_mainwindow.h:665
 msgid "Ctrl+K"
-msgstr "Ctrl+K"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:658
 msgid "Ctrl+L"
-msgstr "Ctrl+L"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:710
 msgid "Ctrl+M"
-msgstr "Ctrl+M"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:698
 msgid "Ctrl+N"
-msgstr "Ctrl+N"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:681
 msgid "Ctrl+O"
-msgstr "Ctrl+O"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:673
 msgid "Ctrl+P"
-msgstr "Ctrl+P"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:654
 msgid "Ctrl+Q"
-msgstr "Ctrl+Q"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:700
 msgid "Ctrl+S"
-msgstr "Ctrl+S"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:679
 msgid "Ctrl+Shift+A"
-msgstr "Ctrl+Shift+A"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:702
 msgid "Ctrl+Shift+O"
-msgstr "Ctrl+Shift+O"
+msgstr ""
 
 #: ../bin/src/ui_mainwindow.h:713
 msgid "Ctrl+T"
-msgstr "Ctrl+T"
+msgstr ""
 
 #: ../bin/src/ui_queuemanager.h:129
 msgid "Ctrl+Up"
-msgstr "Ctrl+Up"
+msgstr ""
 
 #: ui/equalizer.cpp:108 ../bin/src/ui_lastfmstationdialog.h:98
 msgid "Custom"
