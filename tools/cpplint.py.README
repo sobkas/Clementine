@@ -1,0 +1,2 @@
+This command should be used with the following options:
+--filter=-build/include_order,-build/include,-readability/function
