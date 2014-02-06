@@ -3393,7 +3393,7 @@ def CheckStyle(filename, clean_lines, linenum, file_extension, nesting_state,
           'Line ends in whitespace.  Consider deleting these extra spaces.')
   # There are certain situations we allow one space, notably for section labels
   elif ((initial_spaces == 1 or initial_spaces == 3) and
-        not Match(r'\s*\w+\s*:\s*$', cleansed_line)):
+        not (Match(r'\s*\w+\s*:\s*$', cleansed_line) or Match(r'\s*\w+\s*\w+:\s*$', cleansed_line))):
     error(filename, linenum, 'whitespace/indent', 3,
           'Weird number of spaces at line-start.  '
           'Are you using a 2-space indent?')
