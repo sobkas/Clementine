@@ -1326,6 +1326,8 @@ add_executable(clementine
   main.cpp
 )
 
+qt5_use_package(clementine Core Gui OpenGL Sql Network Xml Widgets)
+
 if (${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
   target_link_libraries(clementine execinfo)
 endif (${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")

@@ -1,4 +1,4 @@
-cmake_minimum_required(VERSION 2.6)
+cmake_minimum_required(VERSION 2.8.9)
 cmake_policy(SET CMP0011 OLD)
 
 include(CheckCXXCompilerFlag)
@@ -25,15 +25,15 @@ if (UNIX AND NOT APPLE)
   set(LINUX 1)
 endif (UNIX AND NOT APPLE)
 
-find_package(Qt4 4.5.0 REQUIRED QtCore QtGui QtOpenGL QtSql QtNetwork QtXml)
+find_package(Qt5 5.2.1 REQUIRED Core Gui OpenGL Sql Network Xml Widgets)
 
 if(NOT APPLE)
-  find_package(Qt4 COMPONENTS QtWebKit)
+  find_package(Qt5 COMPONENTS WebKit)
 endif(NOT APPLE)
 
 # Find Qt's lconvert binary.  Try qt's binary dir first, fall back to looking in PATH
-find_program(QT_LCONVERT_EXECUTABLE NAMES lconvert lconvert-qt4 PATHS ${QT_BINARY_DIR} NO_DEFAULT_PATH)
-find_program(QT_LCONVERT_EXECUTABLE NAMES lconvert lconvert-qt4)
+find_program(QT_LCONVERT_EXECUTABLE NAMES lconvert lconvert-qt5 PATHS ${QT_BINARY_DIR} NO_DEFAULT_PATH)
+find_program(QT_LCONVERT_EXECUTABLE NAMES lconvert lconvert-qt5)
 
 if(APPLE)
   if(NOT QT_MAC_USE_COCOA)
@@ -268,10 +268,11 @@ endif()
 
 # Find DBus if it's enabled
 if (HAVE_DBUS)
-  find_package(Qt4 REQUIRED QtDbus)
+  find_package(Qt5 REQUIRED DBus)
 endif ()
 
 # We can include the Qt definitions now
+message("${QT_USE_FILE}")
 include(${QT_USE_FILE})
 
 # Remove GLU and GL from the link line - they're not really required
@@ -292,28 +293,6 @@ if(ENABLE_VISUALISATIONS)
     set(LIBPROJECTM_LIBRARIES projectM)
   endif(USE_SYSTEM_PROJECTM)
 endif(ENABLE_VISUALISATIONS)
-
-
-# Build our copy of QSqlLiteDriver.
-# We do this because we can't guarantee that the driver shipped with Qt exposes the
-# raw sqlite3_ functions required for FTS support. This way we know that those symbols
-# exist at compile-time and that our code links to the same sqlite library as the
-# Qt driver.
-add_subdirectory(3rdparty/qsqlite)
-include_directories("3rdparty/qsqlite")
-
-# When/if upstream accepts our patches then these options can be used to link
-# to system installed qtsingleapplication instead.
-option(USE_SYSTEM_QTSINGLEAPPLICATION "Don't set this option unless your system QtSingleApplication library has been compiled with the Clementine patches in 3rdparty" OFF)
-if(USE_SYSTEM_QTSINGLEAPPLICATION)
-  find_path(QTSINGLEAPPLICATION_INCLUDE_DIRS qtsingleapplication.h PATH_SUFFIXES QtSolutions)
-  find_library(QTSINGLEAPPLICATION_LIBRARIES QtSolutions_SingleApplication-2.6)
-  find_library(QTSINGLECOREAPPLICATION_LIBRARIES QtSolutions_SingleCoreApplication-2.6)
-else(USE_SYSTEM_QTSINGLEAPPLICATION)
-  add_subdirectory(3rdparty/qtsingleapplication)
-  set(QTSINGLEAPPLICATION_INCLUDE_DIRS ${CMAKE_CURRENT_SOURCE_DIR}/3rdparty/qtsingleapplication)
-  set(QTSINGLEAPPLICATION_LIBRARIES qtsingleapplication)
-endif(USE_SYSTEM_QTSINGLEAPPLICATION)
 
 # QtIoCompressor isn't patched, so we can use a system version if it's
 # available
