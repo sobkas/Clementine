@@ -1,3 +1,6 @@
+cmake_minimum_required(VERSION 2.8.9)
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOMOC ON)
 set(SOURCES)
 
 set(HEADERS
@@ -6,7 +9,7 @@ set(HEADERS
     qprogressindicatorspinning.h
 )
 
-qt4_wrap_cpp(MOC_SOURCES ${HEADERS})
+qt5_wrap_cpp(MOC_SOURCES ${HEADERS})
 
 if(APPLE)
     list(APPEND SOURCES
@@ -23,10 +26,11 @@ else()
     set(RESOURCES
         qprogressindicatorspinning_nonmac.qrc
     )
-    qt4_add_resources(RESOURCES_SOURCES ${RESOURCES})
+    qt5_add_resources(RESOURCES_SOURCES ${RESOURCES})
 endif()
 
 add_library(Qocoa STATIC
     ${SOURCES} ${MOC_SOURCES} ${RESOURCES_SOURCES}
 )
-target_link_libraries(Qocoa ${QT_LIBRARIES})
+qt5_use_modules(Qocoa Core)
+#target_link_libraries(Qocoa ${QT_LIBRARIES})

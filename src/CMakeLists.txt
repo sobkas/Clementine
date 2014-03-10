@@ -16,14 +16,7 @@ if(WIN32)
   include_directories(../3rdparty/qtwin)
 endif(WIN32)
 
-# Activate fast QString concatenation
-if (QT_VERSION_MINOR GREATER 5)
-  if (QT_VERSION_MINOR GREATER 7)
-    add_definitions(-DQT_USE_QSTRINGBUILDER)
-  else(QT_VERSION_MINOR GREATER 7)
-    add_definitions(-DQT_USE_FAST_CONCATENATION -DQT_USE_FAST_OPERATOR_PLUS)
-  endif(QT_VERSION_MINOR GREATER 7)
-endif(QT_VERSION_MINOR GREATER 5)
+
 add_definitions(-DQT_NO_URL_CAST_FROM_STRING)
 add_definitions(-DBOOST_BIND_NO_PLACEHOLDERS)
 
@@ -894,41 +887,41 @@ if(HAVE_DBUS)
   list(APPEND QT_DBUSXML2CPP_EXECUTABLE -N)
 
   # MPRIS DBUS interfaces
-  qt4_add_dbus_adaptor(SOURCES
-      dbus/org.freedesktop.MediaPlayer.player.xml
-      core/mpris1.h mpris::Mpris1Player core/mpris_player MprisPlayer)
-  qt4_add_dbus_adaptor(SOURCES
-      dbus/org.freedesktop.MediaPlayer.root.xml
-      core/mpris1.h mpris::Mpris1Root core/mpris_root MprisRoot)
-  qt4_add_dbus_adaptor(SOURCES
-      dbus/org.freedesktop.MediaPlayer.tracklist.xml
-      core/mpris1.h mpris::Mpris1TrackList core/mpris_tracklist MprisTrackList)
+  #qt4_add_dbus_adaptor(SOURCES
+  #    dbus/org.freedesktop.MediaPlayer.player.xml
+  #    core/mpris1.h mpris::Mpris1Player core/mpris_player MprisPlayer)
+  #qt4_add_dbus_adaptor(SOURCES
+  #    dbus/org.freedesktop.MediaPlayer.root.xml
+  #    core/mpris1.h mpris::Mpris1Root core/mpris_root MprisRoot)
+  #qt4_add_dbus_adaptor(SOURCES
+  #    dbus/org.freedesktop.MediaPlayer.tracklist.xml
+  #    core/mpris1.h mpris::Mpris1TrackList core/mpris_tracklist MprisTrackList)
 
   # MPRIS 2.0 DBUS interfaces
-  qt4_add_dbus_adaptor(SOURCES
-      dbus/org.mpris.MediaPlayer2.Player.xml
-      core/mpris2.h mpris::Mpris2 core/mpris2_player Mpris2Player)
-  qt4_add_dbus_adaptor(SOURCES
-      dbus/org.mpris.MediaPlayer2.xml
-      core/mpris2.h mpris::Mpris2 core/mpris2_root Mpris2Root)
-  qt4_add_dbus_adaptor(SOURCES
-      dbus/org.mpris.MediaPlayer2.TrackList.xml
-      core/mpris2.h mpris::Mpris2 core/mpris2_tracklist Mpris2TrackList)
+  #qt4_add_dbus_adaptor(SOURCES
+  #    dbus/org.mpris.MediaPlayer2.Player.xml
+  #    core/mpris2.h mpris::Mpris2 core/mpris2_player Mpris2Player)
+  #qt4_add_dbus_adaptor(SOURCES
+  #    dbus/org.mpris.MediaPlayer2.xml
+  #    core/mpris2.h mpris::Mpris2 core/mpris2_root Mpris2Root)
+  #qt4_add_dbus_adaptor(SOURCES
+  #    dbus/org.mpris.MediaPlayer2.TrackList.xml
+  #    core/mpris2.h mpris::Mpris2 core/mpris2_tracklist Mpris2TrackList)
 
   # MPRIS 2.1 DBUS interfaces
-  qt4_add_dbus_adaptor(SOURCES
-      dbus/org.mpris.MediaPlayer2.Playlists.xml
-      core/mpris2.h mpris::Mpris2 core/mpris2_playlists Mpris2Playlists)
+  #qt4_add_dbus_adaptor(SOURCES
+  #    dbus/org.mpris.MediaPlayer2.Playlists.xml
+  #    core/mpris2.h mpris::Mpris2 core/mpris2_playlists Mpris2Playlists)
 
   # org.freedesktop.Notifications DBUS interface
-  qt4_add_dbus_interface(SOURCES
-      dbus/org.freedesktop.Notifications.xml
-      dbus/notification)
+  #qt4_add_dbus_interface(SOURCES
+  #    dbus/org.freedesktop.Notifications.xml
+  #    dbus/notification)
 
   # org.gnome.SettingsDaemon interface
-  qt4_add_dbus_interface(SOURCES
-      dbus/org.gnome.SettingsDaemon.MediaKeys.xml
-      dbus/gnomesettingsdaemon)
+  #qt4_add_dbus_interface(SOURCES
+  #    dbus/org.gnome.SettingsDaemon.MediaKeys.xml
+  #    dbus/gnomesettingsdaemon)
 
   # org.freedesktop.Avahi.Server interface
   add_custom_command(
@@ -959,21 +952,21 @@ if(HAVE_DBUS)
   list(APPEND SOURCES ${CMAKE_CURRENT_BINARY_DIR}/dbus/avahientrygroup.cpp)
 
   # DeviceKit DBUS interfaces
-  if(HAVE_DEVICEKIT)
-    qt4_add_dbus_interface(SOURCES
-        dbus/org.freedesktop.UDisks.xml
-        dbus/udisks)
-    qt4_add_dbus_interface(SOURCES
-        dbus/org.freedesktop.UDisks.Device.xml
-        dbus/udisksdevice)
-  endif(HAVE_DEVICEKIT)
+  #if(HAVE_DEVICEKIT)
+  #  qt4_add_dbus_interface(SOURCES
+  #      dbus/org.freedesktop.UDisks.xml
+  #      dbus/udisks)
+  #  qt4_add_dbus_interface(SOURCES
+  #      dbus/org.freedesktop.UDisks.Device.xml
+  #      dbus/udisksdevice)
+  #endif(HAVE_DEVICEKIT)
 
   # Wiimotedev interface classes
-  if(ENABLE_WIIMOTEDEV)
-    qt4_add_dbus_interface(SOURCES
-        dbus/org.wiimotedev.deviceEvents.xml
-        dbus/wiimotedev)
-  endif(ENABLE_WIIMOTEDEV)
+  #if(ENABLE_WIIMOTEDEV)
+  #  qt4_add_dbus_interface(SOURCES
+  #      dbus/org.wiimotedev.deviceEvents.xml
+  #      dbus/wiimotedev)
+  #endif(ENABLE_WIIMOTEDEV)
 endif(HAVE_DBUS)
 
 optional_source(HAVE_DBUS
@@ -1150,9 +1143,9 @@ configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/version.h.in
                ${CMAKE_CURRENT_BINARY_DIR}/version.h)
 
-qt4_wrap_cpp(MOC ${HEADERS})
-qt4_wrap_ui(UIC ${UI})
-qt4_add_resources(QRC ${RESOURCES})
+qt5_wrap_cpp(MOC ${HEADERS})
+qt5_wrap_ui(UIC ${UI})
+qt5_add_resources(QRC ${RESOURCES})
 
 add_pot(POT
   ${CMAKE_CURRENT_SOURCE_DIR}/translations/header
@@ -1191,7 +1184,6 @@ target_link_libraries(clementine_lib
   ${GOBJECT_LIBRARIES}
   ${GLIB_LIBRARIES}
   ${QJSON_LIBRARIES}
-  ${QT_LIBRARIES}
   ${GSTREAMER_BASE_LIBRARIES}
   ${GSTREAMER_LIBRARIES}
   ${GSTREAMER_APP_LIBRARIES}
@@ -1204,6 +1196,7 @@ target_link_libraries(clementine_lib
   z
   Qocoa
 )
+qt5_use_modules(clementine_lib Core Gui OpenGL Sql Network Xml Widgets)
 
 if(ENABLE_VISUALISATIONS)
   target_link_libraries(clementine_lib ${LIBPROJECTM_LIBRARIES})
@@ -1327,6 +1320,14 @@ add_executable(clementine
 )
 
 qt5_use_package(clementine Core Gui OpenGL Sql Network Xml Widgets)
+if(NOT APPLE)
+  qt5_use_package(clementine WebKit)
+endif(NOT APPLE)
+
+
+if (HAVE_DBUS)
+  qt5_use_package(clementine DBus)
+endif (HAVE_DBUS)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
   target_link_libraries(clementine execinfo)

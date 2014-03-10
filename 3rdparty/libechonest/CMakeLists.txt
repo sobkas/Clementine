@@ -1,5 +1,7 @@
 
 include_directories( ${QJSON_INCLUDE_DIRS} ${CMAKE_CURRENT_SOURCE_DIR} )
+set(CMAKE_INCLUDE_CURRENT_DIR ON)
+set(CMAKE_AUTOMOC ON)
 
 set( LIBECHONEST_SRC
         Track.cpp
@@ -38,7 +40,6 @@ set( LIBECHONEST_H
         TypeInformation.h
 )
 
-QT4_WRAP_CPP( ${LIBECHONEST_H} )
 
 if (CMAKE_COMPILER_IS_GNUCXX)
     add_definitions( -Werror )

@@ -271,14 +271,6 @@ if (HAVE_DBUS)
   find_package(Qt5 REQUIRED DBus)
 endif ()
 
-# We can include the Qt definitions now
-message("${QT_USE_FILE}")
-include(${QT_USE_FILE})
-
-# Remove GLU and GL from the link line - they're not really required
-# and don't exist on my mingw toolchain
-list(REMOVE_ITEM QT_LIBRARIES "-lGLU -lGL")
-
 option(BUNDLE_PROJECTM_PRESETS "Install Clementine's own copies of libprojectm presets - disable this if you want to use a system package instead" ON)
 
 if(ENABLE_VISUALISATIONS)
