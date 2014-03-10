@@ -1319,14 +1319,14 @@ add_executable(clementine
   main.cpp
 )
 
-qt5_use_package(clementine Core Gui OpenGL Sql Network Xml Widgets)
+qt5_use_modules(clementine Core Gui OpenGL Sql Network Xml Widgets)
 if(NOT APPLE)
-  qt5_use_package(clementine WebKit)
+  qt5_use_modules(clementine WebKit)
 endif(NOT APPLE)
 
 
 if (HAVE_DBUS)
-  qt5_use_package(clementine DBus)
+  qt5_use_modules(clementine DBus)
 endif (HAVE_DBUS)
 
 if (${CMAKE_SYSTEM_NAME} MATCHES "FreeBSD")
