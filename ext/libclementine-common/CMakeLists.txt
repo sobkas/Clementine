@@ -21,7 +21,7 @@ set(HEADERS
   core/workerpool.h
 )
 
-qt4_wrap_cpp(MOC ${HEADERS})
+qt5_wrap_cpp(MOC ${HEADERS})
 
 add_library(libclementine-common STATIC
   ${SOURCES}
