@@ -212,6 +212,9 @@ void PodcastParser::ParseItem(QXmlStreamReader* reader, Podcast* ret) const {
         } else if (name == "pubDate") {
           episode.set_publication_date(
               Utilities::ParseRFC822DateTime(reader->readElementText()));
+          if (!episode.publication_date().isValid()) {
+            qLog(Error) << "Unable to parse date:" << reader->readElementText();
+          }
         } else if (name == "duration" && lower_namespace == kItunesNamespace) {
           // http://www.apple.com/itunes/podcasts/specs.html
           QStringList parts = reader->readElementText().split(':');
@@ -237,6 +240,9 @@ void PodcastParser::ParseItem(QXmlStreamReader* reader, Podcast* ret) const {
       }
 
       case QXmlStreamReader::EndElement:
+        if (!episode.publication_date().isValid()) {
+          episode.set_publication_date(QDateTime::currentDateTime());
+        }
         if (!episode.url().isEmpty()) {
           ret->add_episode(episode);
         }
