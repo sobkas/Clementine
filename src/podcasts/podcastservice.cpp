@@ -231,6 +231,11 @@ void PodcastService::PopulatePodcastList(QStandardItem* parent) {
   }
 }
 
+void PodcastService::DePopulatePodcastList(QStandardItem* parent) {
+  // Do this here since the downloader won't be created yet in the ctor.
+  parent->removeRows(0, parent->rowCount());
+}
+
 void PodcastService::UpdatePodcastText(QStandardItem* item,
                                        int unlistened_count) const {
   const Podcast podcast = item->data(Role_Podcast).value<Podcast>();
@@ -348,13 +353,23 @@ QStandardItem* PodcastService::CreatePodcastItem(const Podcast& podcast) {
 
   // Add the episodes in this podcast and gather aggregate stats.
   int unlistened_count = 0;
+  qint64 number_ = 0;
   for (const PodcastEpisode& episode :
        backend_->GetEpisodes(podcast.database_id())) {
     if (!episode.listened()) {
       unlistened_count++;
     }
 
-    item->appendRow(CreatePodcastEpisodeItem(episode));
+    if (episode.listened() && hide_listened_) {
+      continue;
+    } else {
+      item->appendRow(CreatePodcastEpisodeItem(episode));
+      ++number_;
+    }
+
+    if ((number_ >= show_episodes_) && (show_episodes_ != 0)) {
+      break;
+    }
   }
 
   item->setIcon(default_icon_);
@@ -535,9 +550,25 @@ void PodcastService::RemoveSelectedPodcast() {
 
 void PodcastService::ReloadSettings() {
   QSettings s;
+  QSettings p;
   s.beginGroup(LibraryView::kSettingsGroup);
-
+  p.beginGroup(kSettingsGroup);
   use_pretty_covers_ = s.value("pretty_covers", true).toBool();
+  hide_listened_ = p.value("hide_listened", false).toBool();
+  show_episodes_ = p.value("show_episodes", 0).toInt();
+  DePopulatePodcastList(model_->invisibleRootItem());
+  PopulatePodcastList(model_->invisibleRootItem());
+  // TODO(notme): reload the podcast icons that are already loaded?
+}
+
+void PodcastService::LoadSettings() {
+  QSettings s;
+  QSettings p;
+  s.beginGroup(LibraryView::kSettingsGroup);
+  p.beginGroup(kSettingsGroup);
+  use_pretty_covers_ = s.value("pretty_covers", true).toBool();
+  hide_listened_ = p.value("hide_listened", false).toBool();
+  show_episodes_ = p.value("show_episodes", 0).toInt();
   // TODO(notme): reload the podcast icons that are already loaded?
 }
 
@@ -597,7 +628,6 @@ void PodcastService::EpisodesAdded(const PodcastEpisodeList& episodes) {
     if (!parent) continue;
 
     parent->appendRow(CreatePodcastEpisodeItem(episode));
-
     if (!seen_podcast_ids.contains(database_id)) {
       // Update the unlistened count text once for each podcast
       int unlistened_count = 0;
@@ -610,6 +640,8 @@ void PodcastService::EpisodesAdded(const PodcastEpisodeList& episodes) {
       UpdatePodcastText(parent, unlistened_count);
       seen_podcast_ids.insert(database_id);
     }
+    const Podcast podcast = parent->data(Role_Podcast).value<Podcast>();
+    ReloadPodcast(podcast);
   }
 }
 
@@ -621,7 +653,6 @@ void PodcastService::EpisodesUpdated(const PodcastEpisodeList& episodes) {
     QStandardItem* item = episodes_by_database_id_[episode.database_id()];
     QStandardItem* parent = podcasts_by_database_id_[podcast_database_id];
     if (!item || !parent) continue;
-
     // Update the episode data on the item, and update the item's text.
     item->setData(QVariant::fromValue(episode), Role_Episode);
     UpdateEpisodeText(item);
@@ -640,6 +671,8 @@ void PodcastService::EpisodesUpdated(const PodcastEpisodeList& episodes) {
       UpdatePodcastText(parent, unlistened_count);
       seen_podcast_ids.insert(podcast_database_id);
     }
+    const Podcast podcast = parent->data(Role_Podcast).value<Podcast>();
+    ReloadPodcast(podcast);
   }
 }
 
@@ -778,4 +811,14 @@ void PodcastService::SubscribeAndShow(const QVariant& podcast_or_opml) {
 
     add_podcast_dialog_->ShowWithOpml(podcast_or_opml.value<OpmlContainer>());
   }
+}
+
+void PodcastService::ReloadPodcast(Podcast podcast) {
+  if (!(hide_listened_ || (show_episodes_ > 0))) {
+    return;
+  }
+  QStandardItem* item = podcasts_by_database_id_[podcast.database_id()];
+
+  model_->invisibleRootItem()->removeRow(item->row());
+  model_->invisibleRootItem()->appendRow(CreatePodcastItem(podcast));
 }
