@@ -47,7 +47,7 @@ Task::Task(PodcastEpisode episode, QFile* file, PodcastBackend* backend)
   connect(repl.get(), SIGNAL(readyRead()), SLOT(reading()));
   connect(repl.get(), SIGNAL(finished()), SLOT(finishedInternal()));
   connect(repl.get(), SIGNAL(downloadProgress(qint64, qint64)),
-          SLOT(downloadProgress_(qint64, qint64)));
+          SLOT(downloadProgressInternal(qint64, qint64)));
   emit ProgressChanged(episode_, PodcastDownload::Downloading, 0);
 }
 
@@ -62,10 +62,22 @@ void Task::reading() {
     file_->write(repl->reply()->read(bytes));
   }
 }
+void Task::finishedPublic() {
+    disconnect(repl.get(), SIGNAL(readyRead()), 0, 0);
+    disconnect(repl.get(), SIGNAL(downloadProgress(qint64, qint64)), 0, 0);
+    disconnect(repl.get(), SIGNAL(finished()), 0, 0);
+    emit ProgressChanged(episode_, PodcastDownload::NotDownloading, 0);
+    // Delete the file
+    file_->remove();
+    emit finished();
+}
 
 void Task::finishedInternal() {
   if (repl->error() != QNetworkReply::NoError) {
     qLog(Warning) << "Error downloading episode:" << repl->errorString();
+    disconnect(repl.get(), SIGNAL(readyRead()), 0, 0);
+    disconnect(repl.get(), SIGNAL(downloadProgress(qint64, qint64)), 0, 0);
+    disconnect(repl.get(), SIGNAL(finished()), 0, 0);
     emit ProgressChanged(episode_, PodcastDownload::NotDownloading, 0);
     // Delete the file
     file_->remove();
@@ -92,7 +104,7 @@ void Task::finishedInternal() {
   TagReaderClient::Instance()->SaveFileBlocking(file_->fileName(), song);
 }
 
-void Task::downloadProgress_(qint64 received, qint64 total) {
+void Task::downloadProgressInternal(qint64 received, qint64 total) {
   if (total <= 0) {
     emit ProgressChanged(episode_, PodcastDownload::Downloading, 0);
   } else {
@@ -226,5 +238,32 @@ void PodcastDownloader::EpisodesAdded(const PodcastEpisodeList& episodes) {
     for (const PodcastEpisode& episode : episodes) {
       DownloadEpisode(episode);
     }
+  }
+}
+
+PodcastEpisodeList PodcastDownloader::EpisodesDownloading(PodcastEpisodeList episodes) {
+  PodcastEpisodeList ret;
+  for (Task* tas : list_tasks_) {
+    for (PodcastEpisode episode : episodes) {
+      if (tas->episode().database_id() == episode.database_id()) {
+        ret << episode;
+      }
+    }
+  }
+  return ret;
+}
+
+void PodcastDownloader::cancelDownload(PodcastEpisodeList episodes) {
+  QList<Task*> ta;
+  for (Task* tas : list_tasks_) {
+    for (PodcastEpisode episode : episodes) {
+      if (tas->episode().database_id() == episode.database_id()) {
+        ta << tas;
+      }
+    }
+  }
+  for (Task* tas : ta) {
+    tas->finishedPublic();
+    list_tasks_.removeAll(tas);
   }
 }
