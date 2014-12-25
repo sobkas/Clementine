@@ -643,6 +643,7 @@ void PodcastService::EpisodesAdded(const PodcastEpisodeList& episodes) {
 
 void PodcastService::EpisodesUpdated(const PodcastEpisodeList& episodes) {
   QSet<int> seen_podcast_ids;
+  QMap<int, Podcast> podcasts_map;
 
   for (const PodcastEpisode& episode : episodes) {
     const int podcast_database_id = episode.podcast_database_id();
@@ -668,7 +669,10 @@ void PodcastService::EpisodesUpdated(const PodcastEpisodeList& episodes) {
       seen_podcast_ids.insert(podcast_database_id);
     }
     const Podcast podcast = parent->data(Role_Podcast).value<Podcast>();
-    ReloadPodcast(podcast);
+    podcasts_map[podcast.database_id()]=podcast;
+  }
+  for( Podcast podcast_tmp : podcasts_map.values()) {
+    ReloadPodcast(podcast_tmp);
   }
 }
 
