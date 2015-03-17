@@ -25,8 +25,6 @@
 #include <QStandardItemModel>
 
 class Application;
-class OpmlContainer;
-class OpmlFeed;
 class Podcast;
 class StandardItemIconLoader;
 
@@ -46,9 +44,6 @@ class PodcastDiscoveryModel : public QStandardItemModel {
     RoleCount
   };
 
-  void CreateOpmlContainerItems(const OpmlContainer& container,
-                                QStandardItem* parent);
-  QStandardItem* CreateOpmlContainerItem(const OpmlContainer& container);
   QStandardItem* CreatePodcastItem(const Podcast& podcast);
   QStandardItem* CreateFolder(const QString& name);
   QStandardItem* CreateLoadingIndicator();

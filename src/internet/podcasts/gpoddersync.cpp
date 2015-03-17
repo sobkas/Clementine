@@ -220,11 +220,6 @@ void GPodderSync::NewPodcastLoaded(PodcastUrlLoaderReply* reply,
     return;
   }
 
-  if (reply->result_type() != PodcastUrlLoaderReply::Type_Podcast) {
-    qLog(Warning) << "The URL" << url << "no longer contains a podcast";
-    return;
-  }
-
   // Apply the actions to the episodes in the podcast.
   for (Podcast podcast : reply->podcast_results()) {
     ApplyActions(actions, podcast.mutable_episodes());

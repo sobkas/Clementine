@@ -146,12 +146,6 @@ void PodcastUpdater::PodcastLoaded(PodcastUrlLoaderReply* reply,
     return;
   }
 
-  if (reply->result_type() != PodcastUrlLoaderReply::Type_Podcast) {
-    qLog(Warning) << "The URL" << podcast.url()
-                  << "no longer contains a podcast";
-    return;
-  }
-
   // Get the episode URLs we had for this podcast already.
   QSet<QUrl> existing_urls;
   for (const PodcastEpisode& episode :

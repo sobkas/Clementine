@@ -23,7 +23,6 @@
 #include "addpodcastpage.h"
 
 class AddPodcastPage;
-class OpmlContainer;
 class PodcastUrlLoader;
 class PodcastUrlLoaderReply;
 class Ui_AddPodcastByUrl;
@@ -39,8 +38,9 @@ class AddPodcastByUrl : public AddPodcastPage {
 
   void Show();
 
-  void SetOpml(const OpmlContainer& opml);
   void SetUrlAndGo(const QUrl& url);
+ signals:
+  void close_dialog();
 
  private slots:
   void GoClicked();

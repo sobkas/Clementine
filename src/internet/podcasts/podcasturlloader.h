@@ -23,7 +23,6 @@
 #include <QObject>
 #include <QRegExp>
 
-#include "opmlcontainer.h"
 #include "podcast.h"
 
 class PodcastParser;
@@ -37,20 +36,15 @@ class PodcastUrlLoaderReply : public QObject {
  public:
   PodcastUrlLoaderReply(const QUrl& url, QObject* parent);
 
-  enum ResultType { Type_Podcast, Type_Opml };
-
   const QUrl& url() const { return url_; }
   bool is_finished() const { return finished_; }
   bool is_success() const { return error_text_.isEmpty(); }
   const QString& error_text() const { return error_text_; }
 
-  ResultType result_type() const { return result_type_; }
   const PodcastList& podcast_results() const { return podcast_results_; }
-  const OpmlContainer& opml_results() const { return opml_results_; }
 
   void SetFinished(const QString& error_text);
   void SetFinished(const PodcastList& results);
-  void SetFinished(const OpmlContainer& results);
 
  signals:
   void Finished(bool success);
@@ -60,9 +54,7 @@ class PodcastUrlLoaderReply : public QObject {
   bool finished_;
   QString error_text_;
 
-  ResultType result_type_;
   PodcastList podcast_results_;
-  OpmlContainer opml_results_;
 };
 
 class PodcastUrlLoader : public QObject {
@@ -84,12 +76,15 @@ class PodcastUrlLoader : public QObject {
   static QUrl FixPodcastUrl(const QString& url_text);
   static QUrl FixPodcastUrl(const QUrl& url);
 
+ public slots:
+  void close_dialog();  
+
  private:
   struct RequestState {
     int redirects_remaining_;
     PodcastUrlLoaderReply* reply_;
   };
-
+  QNetworkReply* network_reply_ = nullptr;
   typedef QPair<QString, QString> QuickPrefix;
   typedef QList<QuickPrefix> QuickPrefixList;
 

@@ -34,7 +34,6 @@
 #include "devices/deviceview.h"
 #include "internet/core/internetmodel.h"
 #include "library/libraryview.h"
-#include "opmlcontainer.h"
 #include "podcastbackend.h"
 #include "podcastdeleter.h"
 #include "podcastdownloader.h"
@@ -571,6 +570,11 @@ void PodcastService::InitialLoadSettings() {
 
 void PodcastService::EnsureAddPodcastDialogCreated() {
   add_podcast_dialog_.reset(new AddPodcastDialog(app_));
+  //connect(add_podcast_dialog_.get(), SIGNAL(finished(int)), this, SLOT(delete_podcast_dialog()));
+}
+
+void PodcastService::delete_podcast_dialog() {
+  add_podcast_dialog_.reset();
 }
 
 void PodcastService::AddPodcast() {
@@ -793,24 +797,18 @@ void PodcastService::LazyLoadRoot() {
   }
 }
 
-void PodcastService::SubscribeAndShow(const QVariant& podcast_or_opml) {
-  if (podcast_or_opml.canConvert<Podcast>()) {
-    Podcast podcast(podcast_or_opml.value<Podcast>());
+void PodcastService::SubscribeAndShow(const PodcastList& podcasts) {
+  for (Podcast podcast : podcasts) {
     backend_->Subscribe(&podcast);
-
+  
     // Lazy load the root item if it hasn't been already
     LazyLoadRoot();
-
     QStandardItem* item = podcasts_by_database_id_[podcast.database_id()];
     if (item) {
       // There will be an item already if this podcast was already there,
       // otherwise it'll be scrolled to when the item is created.
       emit ScrollToIndex(MapToMergedModel(item->index()));
     }
-  } else if (podcast_or_opml.canConvert<OpmlContainer>()) {
-    EnsureAddPodcastDialogCreated();
-
-    add_podcast_dialog_->ShowWithOpml(podcast_or_opml.value<OpmlContainer>());
   }
 }
 

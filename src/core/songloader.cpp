@@ -346,9 +346,9 @@ void SongLoader::StopTypefind() {
   } else if (success_ && is_podcast_) {
     qLog(Debug) << "Parsing" << url_ << "as a podcast";
 
-    QVariant result = podcast_parser_->Load(buffer_, url_);
+    PodcastList result = podcast_parser_->Load(buffer_, url_, true);
 
-    if (result.isNull()) {
+    if (result.isEmpty()) {
       qLog(Warning) << "Failed to parse podcast";
     } else {
       InternetModel::Service<PodcastService>()->SubscribeAndShow(result);

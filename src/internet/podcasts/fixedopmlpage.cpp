@@ -56,17 +56,7 @@ void FixedOpmlPage::LoadFinished(PodcastUrlLoaderReply* reply) {
                          reply->error_text(), QMessageBox::Close);
     return;
   }
-
-  switch (reply->result_type()) {
-    case PodcastUrlLoaderReply::Type_Podcast:
-      for (const Podcast& podcast : reply->podcast_results()) {
-        model()->appendRow(model()->CreatePodcastItem(podcast));
-      }
-      break;
-
-    case PodcastUrlLoaderReply::Type_Opml:
-      model()->CreateOpmlContainerItems(reply->opml_results(),
-                                        model()->invisibleRootItem());
-      break;
+  for (const Podcast& podcast : reply->podcast_results()) {
+    model()->appendRow(model()->CreatePodcastItem(podcast)); 
   }
 }

@@ -32,17 +32,15 @@
 #include "podcastdiscoverymodel.h"
 #include "ui_addpodcastdialog.h"
 #include "core/application.h"
+#include "core/logging.h"
 #include "ui/iconloader.h"
 #include "widgets/widgetfadehelper.h"
 
-const char* AddPodcastDialog::kBbcOpmlUrl =
-    "http://www.bbc.co.uk/podcasts.opml";
-
 AddPodcastDialog::AddPodcastDialog(Application* app, QWidget* parent)
     : QDialog(parent),
+      last_opml_path_(QDir::homePath()),
       app_(app),
-      ui_(new Ui_AddPodcastDialog),
-      last_opml_path_(QDir::homePath()) {
+      ui_(new Ui_AddPodcastDialog){
   ui_->setupUi(this);
   ui_->details->SetApplication(app);
   ui_->results->SetExpandOnReset(false);
@@ -54,18 +52,15 @@ AddPodcastDialog::AddPodcastDialog(Application* app, QWidget* parent)
   connect(ui_->provider_list, SIGNAL(currentRowChanged(int)),
           SLOT(ChangePage(int)));
   connect(ui_->details, SIGNAL(LoadingFinished()), fader_, SLOT(StartFade()));
-  connect(ui_->results, SIGNAL(doubleClicked(QModelIndex)),
-          SLOT(PodcastDoubleClicked(QModelIndex)));
+  connect(ui_->results, SIGNAL(doubleClicked(QModelIndex)), SLOT(PodcastDoubleClicked(QModelIndex)));
 
   // Create Add and Remove Podcast buttons
-  add_button_ =
-      new QPushButton(IconLoader::Load("list-add"), tr("Add Podcast"), this);
+  add_button_ = new QPushButton(IconLoader::Load("list-add"), tr("Add Podcast"), this);
   add_button_->setEnabled(false);
   connect(add_button_, SIGNAL(clicked()), SLOT(AddPodcast()));
   ui_->button_box->addButton(add_button_, QDialogButtonBox::ActionRole);
 
-  remove_button_ =
-      new QPushButton(IconLoader::Load("list-remove"), tr("Unsubscribe"), this);
+  remove_button_ = new QPushButton(IconLoader::Load("list-remove"), tr("Unsubscribe"), this);
   remove_button_->setEnabled(false);
   connect(remove_button_, SIGNAL(clicked()), SLOT(RemovePodcast()));
   ui_->button_box->addButton(remove_button_, QDialogButtonBox::ActionRole);
@@ -80,29 +75,22 @@ AddPodcastDialog::AddPodcastDialog(Application* app, QWidget* parent)
       IconLoader::Load("document-open"), tr("Open OPML file..."), this);
   connect(open_opml_button, SIGNAL(clicked()), this, SLOT(OpenOPMLFile()));
   ui_->button_box->addButton(open_opml_button, QDialogButtonBox::ResetRole);
-
-  // Add providers
   by_url_page_ = new AddPodcastByUrl(app, this);
+  connect(this, SIGNAL(finished(int)), by_url_page_, SIGNAL(close_dialog()));
   AddPage(by_url_page_);
-  AddPage(new FixedOpmlPage(QUrl(kBbcOpmlUrl), tr("BBC Podcasts"),
-                            QIcon(":providers/bbc.png"), app, this));
   AddPage(new GPodderTopTagsPage(app, this));
   AddPage(new GPodderSearchPage(app, this));
   AddPage(new ITunesSearchPage(app, this));
 
   ui_->provider_list->setCurrentRow(0);
 }
-
-AddPodcastDialog::~AddPodcastDialog() { delete ui_; }
+AddPodcastDialog::~AddPodcastDialog() {
+  qLog(Debug) << "~AddPodcastDialog() was run";
+  delete ui_;
+}
 
 void AddPodcastDialog::ShowWithUrl(const QUrl& url) {
   by_url_page_->SetUrlAndGo(url);
-  ui_->provider_list->setCurrentRow(0);
-  show();
-}
-
-void AddPodcastDialog::ShowWithOpml(const OpmlContainer& opml) {
-  by_url_page_->SetOpml(opml);
   ui_->provider_list->setCurrentRow(0);
   show();
 }
@@ -112,8 +100,7 @@ void AddPodcastDialog::AddPage(AddPodcastPage* page) {
   page_is_busy_.append(false);
 
   ui_->stack->addWidget(page);
-  new QListWidgetItem(page->windowIcon(), page->windowTitle(),
-                      ui_->provider_list);
+  new QListWidgetItem(page->windowIcon(), page->windowTitle(), ui_->provider_list);
 
   connect(page, SIGNAL(Busy(bool)), SLOT(PageBusyChanged(bool)));
 }
@@ -125,12 +112,9 @@ void AddPodcastDialog::ChangePage(int index) {
   ui_->stack->setVisible(page->has_visible_widget());
   ui_->results->setModel(page->model());
 
-  ui_->results_stack->setCurrentWidget(
-      page_is_busy_[index] ? ui_->busy_page : ui_->results_page);
+  ui_->results_stack->setCurrentWidget(page_is_busy_[index] ? ui_->busy_page : ui_->results_page);
 
-  connect(ui_->results->selectionModel(),
-          SIGNAL(currentRowChanged(QModelIndex, QModelIndex)),
-          SLOT(ChangePodcast(QModelIndex)));
+  connect(ui_->results->selectionModel(), SIGNAL(currentRowChanged(QModelIndex, QModelIndex)), SLOT(ChangePodcast(QModelIndex)));
   ChangePodcast(QModelIndex());
   CurrentPageBusyChanged(page_is_busy_[index]);
 
@@ -161,8 +145,7 @@ void AddPodcastDialog::ChangePodcast(const QModelIndex& current) {
   ui_->details->SetPodcast(current_podcast_);
 
   // Is the user already subscribed to this podcast?
-  Podcast subscribed_podcast =
-      app_->podcast_backend()->GetSubscriptionByUrl(current_podcast_.url());
+  Podcast subscribed_podcast = app_->podcast_backend()->GetSubscriptionByUrl(current_podcast_.url());
   const bool is_subscribed = subscribed_podcast.url().isValid();
 
   if (is_subscribed) {
@@ -240,9 +223,7 @@ void AddPodcastDialog::OpenOPMLFile() {
   if (filename.isEmpty()) {
     return;
   }
-
   last_opml_path_ = filename;
-
   by_url_page_->SetUrlAndGo(QUrl::fromLocalFile(last_opml_path_));
   ChangePage(ui_->stack->indexOf(by_url_page_));
 }

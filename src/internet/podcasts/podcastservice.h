@@ -65,7 +65,7 @@ class PodcastService : public InternetService {
   // Called by SongLoader when the user adds a Podcast URL directly.  Adds a
   // subscription to the podcast and displays it in the UI.  If the QVariant
   // contains an OPML file then this displays it in the Add Podcast dialog.
-  void SubscribeAndShow(const QVariant& podcast_or_opml);
+  void SubscribeAndShow(const PodcastList& podcasts);
 
  public slots:
   void AddPodcast();
@@ -98,6 +98,7 @@ class PodcastService : public InternetService {
   void CancelDownload();
   void CancelDownload(const QModelIndexList& episode_indexes,
                       const QModelIndexList& podcast_indexes);
+  void delete_podcast_dialog();
 
  private:
   void EnsureAddPodcastDialogCreated();

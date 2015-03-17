@@ -156,6 +156,8 @@ int GetThreadId();
 // Returns true if this machine has a battery.
 bool IsLaptop();
 
+QByteArray GetData(QUrl url);
+
 QString SystemLanguageName();
 }  // namespace Utilities
 

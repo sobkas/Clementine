@@ -25,13 +25,13 @@
 
 #include "core/logging.h"
 #include "core/utilities.h"
-#include "opmlcontainer.h"
 
 // Namespace constants must be lower case.
 const char* PodcastParser::kAtomNamespace = "http://www.w3.org/2005/atom";
 const char* PodcastParser::kItunesNamespace = "http://www.itunes.com/dtds/podcast-1.0.dtd";
 
 PodcastParser::PodcastParser() {
+  qLog(Debug) << "PodcastParser() was run";
   supported_mime_types_ << "application/rss+xml"
                         << "application/xml"
                         << "text/x-opml"
@@ -55,52 +55,55 @@ bool PodcastParser::SupportsContentType(const QString& content_type) const {
 
 bool PodcastParser::TryMagic(const QByteArray& data) const {
   QString str(QString::fromUtf8(data));
-  return str.contains(QRegExp("<rss\\b")) || str.contains(QRegExp("<opml\\b"));
+  return str.contains(QRegExp("<rss\\b")) || str.contains(QRegExp("<feed\\b")) || str.contains(QRegExp("<opml\\b"));
 }
 
-QVariant PodcastParser::Load(QByteArray data, const QUrl& url) const {
-  QTextStream device(&data);
-  QXmlStreamReader reader(device.device());
+PodcastList PodcastParser::Load(QByteArray data, const QUrl& url, bool verbose) const {
   tinyxml2::XMLDocument doc;
   doc.Parse(data.data());
-
+  if (!doc.RootElement()) {
+    return PodcastList();
+  }
+  
   const QString name(doc.RootElement()->Name());
   qLog(Debug) << "Name of the reader:" << name << "on url" <<url;
   if (name == "rss") {
     Podcast podcast;
-    if (!ParseRss(data, &podcast)) {
-      return QVariant();
+    if (!ParseRss(&doc, &podcast, url, verbose)) {
+      return PodcastList();
     } else {
-      podcast.set_url(url);
-      return QVariant::fromValue(podcast);
+      return PodcastList() << podcast;
     }
   } else if (name == "opml") {
-    OpmlContainer container;
-    if (!ParseOpml(&reader, &container)) {
-      return QVariant();
+    PodcastList listofpodcasts;
+    if (!ParseOpml(&doc, &listofpodcasts)) {
+      return PodcastList();
     } else {
-      container.url = url;
-      return QVariant::fromValue(container);
+      return listofpodcasts;
     }
   } else if (name == "feed") {
     Podcast podcast;
-    if (!ParseFeed(data, &podcast)) {
-      return QVariant();
+    if (!ParseFeed(&doc, &podcast, url, verbose)) {
+      return PodcastList();
     } else {
-      podcast.set_url(url);
-      return QVariant::fromValue(podcast);
+      return PodcastList() << podcast;
     }
   }
-  return QVariant();
+  return PodcastList();
 }
 
-bool PodcastParser::ParseRss(QByteArray xml_text, Podcast* ret) const {
-  tinyxml2::XMLDocument doc;
-  doc.Parse(xml_text.data());
-  tinyxml2::XMLElement* feedElement = doc.RootElement()->FirstChildElement("channel");
+bool PodcastParser::ParseRss(tinyxml2::XMLDocument* doc, Podcast* ret, const QUrl& url, bool verbose) const {
+  tinyxml2::XMLElement* feedElement = doc->RootElement()->FirstChildElement("channel");
+  if (!feedElement) {
+    return false;
+  }
   ret->set_title(findElement(feedElement, QStringList() << "title", "title"));
   ret->set_link(QUrl(findElement(feedElement, QStringList() << "link", "link")));
   ret->set_url(QUrl(findElement(feedElement, QStringList() << "itunes:new-feed-url", "url")));
+  if (ret->url().isEmpty()) {
+    ret->set_url(url);
+  }
+ 
   ret->set_description(findElement(feedElement, QStringList() << "description", "description"));
   ret->set_copyright(findElement(feedElement, QStringList() << "copyright", "copyright"));
   ret->set_image_url_large(QUrl(findElement(feedElement, "image", "url", "image")));
@@ -113,7 +116,7 @@ bool PodcastParser::ParseRss(QByteArray xml_text, Podcast* ret) const {
   }
   ret->set_owner_email(findElement(feedElement, "itunes:owner", "itunes:email", "owner:email"));
   tinyxml2::XMLElement* itemElement = feedElement->FirstChildElement("item");
-  while (itemElement) {
+  while (itemElement && verbose) {
     ParseItem(itemElement, ret);
     itemElement = itemElement->NextSiblingElement("item");
   }
@@ -141,7 +144,7 @@ void PodcastParser::ParseItem(tinyxml2::XMLElement* itemElement, Podcast* ret) c
     episode.set_author(ret->owner_name());
   }
 
-  episode.set_url(QUrl::fromEncoded(findUrl(itemElement, QStringList() << "enclosure", "url", "item:url")));
+  episode.set_url(findUrl(itemElement, QStringList() << "enclosure", "url", "item:url"));
   qLog(Debug) << "Episodes url:" << episode.url();
   if (episode.url().isEmpty()) {
     return;
@@ -154,85 +157,74 @@ void PodcastParser::ParseItem(tinyxml2::XMLElement* itemElement, Podcast* ret) c
   ret->add_episode(episode);
 }
 
-bool PodcastParser::ParseOpml(QXmlStreamReader* reader,
-                              OpmlContainer* ret) const {
-  if (!Utilities::ParseUntilElement(reader, "body")) {
-    return false;
+bool PodcastParser::ParseOpml(tinyxml2::XMLDocument* doc, PodcastList* listofpodcasts) const {
+  tinyxml2::XMLElement* feedElement = doc->RootElement()->FirstChildElement( "body" );
+  tinyxml2::XMLElement* entryElement = feedElement->FirstChildElement("outline");
+  QList<tinyxml2::XMLElement*> XMLElementlist;
+  qLog(Debug) << "F Check State of continues:" << loop_;
+  while (entryElement && loop_) {
+    qLog(Debug) << "FF Check State of continues:" << loop_;
+    if (!entryElement->Attribute("type")) {
+      XMLElementlist.append(entryElement);
+      entryElement = entryElement->FirstChildElement("outline");
+      if (!entryElement && !XMLElementlist.isEmpty()) {
+        entryElement = XMLElementlist.last();
+        XMLElementlist.pop_back();
+        entryElement = entryElement->NextSiblingElement("outline");
+      }
+      
+    } else {
+      Podcast podcast;
+      if(entryElement->Attribute("url")) {
+        QUrl url_tmp(entryElement->Attribute("url"));
+        qLog(Debug) << "Will process rss url:" << url_tmp;
+        QByteArray data_tmp = Utilities::GetData(url_tmp);
+        #if 0
+        if (!data_tmp.isEmpty()) {
+          listofpodcasts->append(Load(data_tmp, url_tmp, false));
+        }
+        #endif
+      }
+      if(entryElement->Attribute("xmlUrl")) {
+        QUrl url_tmp(entryElement->Attribute("xmlUrl"));
+        qLog(Debug) << "Will process rss url:" << url_tmp;
+        QByteArray data_tmp = Utilities::GetData(url_tmp);
+        #if 0
+        if (!data_tmp.isEmpty()) {
+          listofpodcasts->append(Load(data_tmp, url_tmp, false));
+        }
+        #endif
+      }
+      entryElement = entryElement->NextSiblingElement("outline");
+      if (!entryElement && !XMLElementlist.isEmpty()) {
+        entryElement = XMLElementlist.last();
+        XMLElementlist.pop_back();
+        entryElement = entryElement->NextSiblingElement("outline");
+  
+      }
+    }
+    qLog(Debug) << "Next loop";
+    qLog(Debug) << "Check State of continues:" << loop_;
+    if (!loop_) {
+      return false;
+    }
   }
-
-  ParseOutline(reader, ret);
-
-  // OPML files sometimes consist of a single top level container.
-  while (ret->feeds.count() == 0 && ret->containers.count() == 1) {
-    *ret = ret->containers[0];
-  }
-
   return true;
 }
 
-void PodcastParser::ParseOutline(QXmlStreamReader* reader,
-                                 OpmlContainer* ret) const {
-  while (!reader->atEnd()) {
-    QXmlStreamReader::TokenType type = reader->readNext();
-    switch (type) {
-      case QXmlStreamReader::StartElement: {
-        const QStringRef name = reader->name();
-        if (name != "outline") {
-          Utilities::ConsumeCurrentElement(reader);
-          continue;
-        }
-
-        QXmlStreamAttributes attributes = reader->attributes();
-
-        if (attributes.value("type").toString() == "rss") {
-          // Parse the feed and add it to this container
-          Podcast podcast;
-          podcast.set_description(attributes.value("description").toString());
-          podcast.set_title(attributes.value("text").toString());
-          podcast.set_image_url_large(QUrl::fromEncoded(
-              attributes.value("imageHref").toString().toAscii()));
-          podcast.set_url(QUrl::fromEncoded(
-              attributes.value("xmlUrl").toString().toAscii()));
-          ret->feeds.append(podcast);
-
-          // Consume any children and the EndElement.
-          Utilities::ConsumeCurrentElement(reader);
-        } else {
-          // Create a new child container
-          OpmlContainer child;
-
-          // Take the name from the fullname attribute first if it exists.
-          child.name = attributes.value("fullname").toString();
-          if (child.name.isEmpty()) {
-            child.name = attributes.value("text").toString();
-          }
-
-          // Parse its contents and add it to this container
-          ParseOutline(reader, &child);
-          ret->containers.append(child);
-        }
-
-        break;
-      }
-
-      case QXmlStreamReader::EndElement:
-        return;
-
-      default:
-        break;
-    }
+bool PodcastParser::ParseFeed(tinyxml2::XMLDocument* doc, Podcast* ret, const QUrl& url, bool verbose) const {
+  tinyxml2::XMLElement* feedElement = doc->FirstChildElement("feed");
+  if (!feedElement) {
+    return false;
   }
-}
-
-bool PodcastParser::ParseFeed(QByteArray xml_text, Podcast* ret) const {
-  tinyxml2::XMLDocument doc;
-  doc.Parse(xml_text.data());
-  tinyxml2::XMLElement* feedElement = doc.FirstChildElement("feed");
   ret->set_title(findElement(feedElement, QStringList() << "title", "title"));
   ret->set_link(QUrl(findElement(feedElement, QStringList() << "link", "href", "link:href")));
   ret->set_url(QUrl(findElement(feedElement, QStringList() << "id", "id")));
+  if (ret->url().isEmpty()) {
+    ret->set_url(url);
+  }
   tinyxml2::XMLElement* entryElement = feedElement->FirstChildElement("entry");
-  while (entryElement) {
+  while (entryElement && verbose) {
     ParseEntry(entryElement, ret);
     entryElement = entryElement->NextSiblingElement();
   }
@@ -304,39 +296,50 @@ QString PodcastParser::findElement(tinyxml2::XMLElement* searchedElement, QStrin
   return QString();
 }
 
-QByteArray PodcastParser::findUrl(tinyxml2::XMLElement* searchedElement, QStringList names, QString tag) const {
+QUrl PodcastParser::findUrl(tinyxml2::XMLElement* searchedElement, QStringList names, QString tag) const {
   for (QString name : names) {
     tinyxml2::XMLElement* tmpElement = searchedElement->FirstChildElement(name.toStdString().c_str());
     if (tmpElement) {
       QByteArray ret(tmpElement->GetText());
-      return ret;
+      return QUrl::fromEncoded(ret);
     }
   }
   qLog(Error) << "Setting tag " << tag << " failed";
-  return QByteArray();
+  return QUrl();
 }
 
-QByteArray PodcastParser::findUrl(tinyxml2::XMLElement* searchedElement, QStringList names, QString attribute, QString tag) const {
+QUrl PodcastParser::findUrl(tinyxml2::XMLElement* searchedElement, QStringList names, QString attribute, QString tag) const {
   for (QString name : names) {
     tinyxml2::XMLElement* tmpElement = searchedElement->FirstChildElement(name.toStdString().c_str());
     if (tmpElement) {
       QByteArray ret(tmpElement->Attribute(attribute.toStdString().c_str()));
-      return ret;
+      return QUrl::fromEncoded(ret);
     }
   }
   qLog(Error) << "Setting tag " << tag << " failed";
-  return QByteArray();
+  return QUrl();
 }
 
 qint64 PodcastParser::parseDuration(QString duration) const {
+  qLog(Debug) << "Duration to be parsed: " << duration;
+  if (!duration.contains(':')) {
+    return duration.toInt();
+  }
   QStringList durations = duration.split(':');
   QList<int> tab;
-  tab << 3600 << 60 << 1;
-  int nums = 2;
+  tab << (24*3600) << 3600 << 60 << 1;
+  if (durations.count() > tab.count()) {
+    return qint64();
+  }
+  int nums = tab.count()-1;
   qint64 ret = 0;
   for (int num = durations.count()-1; num >= 0; --num) {
     ret += durations[num].toInt()*tab[nums];
     --nums;
   }
   return ret;
+}
+void PodcastParser::close_dialog() {
+  qLog(Debug)<<"Close dialog";
+  loop_ = false;
 }

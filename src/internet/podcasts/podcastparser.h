@@ -21,21 +21,23 @@
 #define INTERNET_PODCASTS_PODCASTPARSER_H_
 
 #include <QStringList>
+#include <QObject>
 #include <tinyxml2.h>
 
 #include "podcast.h"
-
-class OpmlContainer;
+#include "podcasturlloader.h"
 
 class QXmlStreamReader;
 
-// Reads XML data from a QIODevice.
-// Returns either a Podcast or an OpmlContainer depending on what was inside
-// the XML document.
-class PodcastParser {
+// Reads XML data from a QByteArray.
+// Returns PodcastList.
+class PodcastParser : public QObject {
+  Q_OBJECT
+
  public:
   PodcastParser();
 
+  void close_dialog();
   static const char* kAtomNamespace;
   static const char* kItunesNamespace;
 
@@ -44,28 +46,26 @@ class PodcastParser {
   }
   bool SupportsContentType(const QString& content_type) const;
 
-  // You should check the type of the returned QVariant to see whether it
-  // contains a Podcast or an OpmlContainer.  If the QVariant isNull then an
-  // error occurred parsing the XML.
-  QVariant Load(QByteArray data, const QUrl& url) const;
+  // Returns PodcastList, always!
+  PodcastList Load(QByteArray data, const QUrl& url, bool verbose) const;
 
-  // Really quick test to see if some data might be supported.  Load() might
-  // still return a null QVariant.
+  // Is it still needed?
   bool TryMagic(const QByteArray& data) const;
+  virtual void fool() {};
+  bool loop_ = true;
 
  private:
-  bool ParseRss(QByteArray xml_text, Podcast* ret) const;
+  bool ParseRss(tinyxml2::XMLDocument* doc, Podcast* ret, const QUrl& url, bool verbose) const;
   void ParseItem(tinyxml2::XMLElement* entryElement, Podcast* ret) const;
 
-  bool ParseOpml(QXmlStreamReader* reader, OpmlContainer* ret) const;
-  void ParseOutline(QXmlStreamReader* reader, OpmlContainer* ret) const;
-  bool ParseFeed(QByteArray xml_text, Podcast* ret) const;
+  bool ParseOpml(tinyxml2::XMLDocument* doc, PodcastList* ret) const;
+  bool ParseFeed(tinyxml2::XMLDocument* doc, Podcast* ret, const QUrl& url, bool verbose) const;
   void ParseEntry(tinyxml2::XMLElement* entryElement, Podcast* ret) const;
   QString findElement(tinyxml2::XMLElement* searchedElement, QStringList names, QString tag) const;
   QString findElement(tinyxml2::XMLElement* searchedElement, QString namea, QString namfb, QString tag) const;
   QString findElement(tinyxml2::XMLElement* searchedElement, QStringList names, QString attribute, QString tag) const;
-  QByteArray findUrl(tinyxml2::XMLElement* searchedElement, QStringList names, QString tag) const;
-  QByteArray findUrl(tinyxml2::XMLElement* searchedElement, QStringList names, QString attribute, QString tag) const;
+  QUrl findUrl(tinyxml2::XMLElement* searchedElement, QStringList names, QString tag) const;
+  QUrl findUrl(tinyxml2::XMLElement* searchedElement, QStringList names, QString attribute, QString tag) const;
   qint64 parseDuration(QString duration) const;
 
  private:

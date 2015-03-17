@@ -27,6 +27,7 @@
 #include "podcasturlloader.h"
 #include "ui_addpodcastbyurl.h"
 #include "core/closure.h"
+#include "core/logging.h"
 
 AddPodcastByUrl::AddPodcastByUrl(Application* app, QWidget* parent)
     : AddPodcastPage(app, parent),
@@ -34,19 +35,17 @@ AddPodcastByUrl::AddPodcastByUrl(Application* app, QWidget* parent)
       loader_(new PodcastUrlLoader(this)) {
   ui_->setupUi(this);
   connect(ui_->go, SIGNAL(clicked()), SLOT(GoClicked()));
+  connect(this, SIGNAL(close_dialog()), loader_, SLOT(close_dialog()));
 }
 
-AddPodcastByUrl::~AddPodcastByUrl() { delete ui_; }
+AddPodcastByUrl::~AddPodcastByUrl() {
+  qLog(Debug) << "~AddPodcastByUrl() was run";
+  delete ui_;
+}
 
 void AddPodcastByUrl::SetUrlAndGo(const QUrl& url) {
   ui_->url->setText(url.toString());
   GoClicked();
-}
-
-void AddPodcastByUrl::SetOpml(const OpmlContainer& opml) {
-  ui_->url->setText(opml.url.toString());
-  model()->clear();
-  model()->CreateOpmlContainerItems(opml, model()->invisibleRootItem());
 }
 
 void AddPodcastByUrl::GoClicked() {
@@ -71,17 +70,8 @@ void AddPodcastByUrl::RequestFinished(PodcastUrlLoaderReply* reply) {
     return;
   }
 
-  switch (reply->result_type()) {
-    case PodcastUrlLoaderReply::Type_Podcast:
-      for (const Podcast& podcast : reply->podcast_results()) {
-        model()->appendRow(model()->CreatePodcastItem(podcast));
-      }
-      break;
-
-    case PodcastUrlLoaderReply::Type_Opml:
-      model()->CreateOpmlContainerItems(reply->opml_results(),
-                                        model()->invisibleRootItem());
-      break;
+  for (const Podcast& podcast : reply->podcast_results()) {
+    model()->appendRow(model()->CreatePodcastItem(podcast));
   }
 }
 

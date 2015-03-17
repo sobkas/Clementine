@@ -23,7 +23,6 @@
 #include <QSet>
 
 #include "core/application.h"
-#include "opmlcontainer.h"
 #include "podcast.h"
 #include "ui/iconloader.h"
 #include "ui/standarditemiconloader.h"
@@ -71,26 +70,6 @@ QStandardItem* PodcastDiscoveryModel::CreateFolder(const QString& name) {
   item->setText(name);
   item->setData(Type_Folder, Role_Type);
   return item;
-}
-
-QStandardItem* PodcastDiscoveryModel::CreateOpmlContainerItem(
-    const OpmlContainer& container) {
-  QStandardItem* item = CreateFolder(container.name);
-  CreateOpmlContainerItems(container, item);
-  return item;
-}
-
-void PodcastDiscoveryModel::CreateOpmlContainerItems(
-    const OpmlContainer& container, QStandardItem* parent) {
-  for (const OpmlContainer& child : container.containers) {
-    QStandardItem* child_item = CreateOpmlContainerItem(child);
-    parent->appendRow(child_item);
-  }
-
-  for (const Podcast& child : container.feeds) {
-    QStandardItem* child_item = CreatePodcastItem(child);
-    parent->appendRow(child_item);
-  }
 }
 
 void PodcastDiscoveryModel::LazyLoadImage(const QUrl& url,

@@ -32,7 +32,7 @@ const int PodcastUrlLoader::kMaxRedirects = 5;
 PodcastUrlLoader::PodcastUrlLoader(QObject* parent)
     : QObject(parent),
       network_(new NetworkAccessManager(this)),
-      parser_(new PodcastParser),
+      parser_(new PodcastParser()),
       html_link_re_("<link (.*)>"),
       html_link_rel_re_("rel\\s*=\\s*['\"]?\\s*alternate"),
       html_link_type_re_("type\\s*=\\s*['\"]?([^'\" ]+)"),
@@ -41,7 +41,9 @@ PodcastUrlLoader::PodcastUrlLoader(QObject* parent)
   html_link_re_.setCaseSensitivity(Qt::CaseInsensitive);
 }
 
-PodcastUrlLoader::~PodcastUrlLoader() { delete parser_; }
+PodcastUrlLoader::~PodcastUrlLoader() {
+  qLog(Debug) << "~PodcastUrlLoader() was run";
+}
 
 QUrl PodcastUrlLoader::FixPodcastUrl(const QString& url_text) {
   QString url_text_copy(url_text.trimmed());
@@ -123,11 +125,12 @@ void PodcastUrlLoader::NextRequest(const QUrl& url, RequestState* state) {
   QNetworkRequest req(url);
   req.setAttribute(QNetworkRequest::CacheLoadControlAttribute,
                    QNetworkRequest::AlwaysNetwork);
-  QNetworkReply* network_reply = network_->get(req);
 
-  NewClosure(network_reply, SIGNAL(finished()), this,
+  network_reply_ = network_->get(req);
+
+  NewClosure(network_reply_, SIGNAL(finished()), this,
              SLOT(RequestFinished(RequestState*, QNetworkReply*)), state,
-             network_reply);
+             network_reply_);
 }
 
 void PodcastUrlLoader::RequestFinished(RequestState* state,
@@ -162,16 +165,13 @@ void PodcastUrlLoader::RequestFinished(RequestState* state,
   }
 
   // Check the mime type.
-  const QString content_type =
-      reply->header(QNetworkRequest::ContentTypeHeader).toString();
+  const QString content_type = reply->header(QNetworkRequest::ContentTypeHeader).toString();
   if (parser_->SupportsContentType(content_type)) {
     QByteArray data(reply->readAll());
-    const QVariant ret = parser_->Load(data, reply->url());
+    PodcastList ret = parser_->Load(data, reply->url(), true);
 
-    if (ret.canConvert<Podcast>()) {
-      state->reply_->SetFinished(PodcastList() << ret.value<Podcast>());
-    } else if (ret.canConvert<OpmlContainer>()) {
-      state->reply_->SetFinished(ret.value<OpmlContainer>());
+    if (!ret.isEmpty()) {
+      state->reply_->SetFinished(ret);
     } else {
       SendErrorAndDelete(tr("Failed to parse the XML for this RSS feed"),
                          state);
@@ -195,8 +195,7 @@ void PodcastUrlLoader::RequestFinished(RequestState* state,
       }
 
       const QString link_type = html_link_type_re_.cap(1);
-      const QString href =
-          Utilities::DecodeHtmlEntities(html_link_href_re_.cap(1));
+      const QString href = Utilities::DecodeHtmlEntities(html_link_href_re_.cap(1));
 
       if (parser_->supported_mime_types().contains(link_type)) {
         NextRequest(QUrl(href), state);
@@ -210,25 +209,22 @@ void PodcastUrlLoader::RequestFinished(RequestState* state,
   }
 }
 
+void PodcastUrlLoader::close_dialog() {
+  parser_->close_dialog();
+  //delete parser_;
+}
+
 PodcastUrlLoaderReply::PodcastUrlLoaderReply(const QUrl& url, QObject* parent)
     : QObject(parent), url_(url), finished_(false) {}
 
 void PodcastUrlLoaderReply::SetFinished(const PodcastList& results) {
-  result_type_ = Type_Podcast;
   podcast_results_ = results;
   finished_ = true;
   emit Finished(true);
 }
 
-void PodcastUrlLoaderReply::SetFinished(const OpmlContainer& results) {
-  result_type_ = Type_Opml;
-  opml_results_ = results;
-  finished_ = true;
-  emit Finished(true);
-}
-
 void PodcastUrlLoaderReply::SetFinished(const QString& error_text) {
-  error_text_ = error_text;
+  error_text_ = "Error has occurred";
   finished_ = true;
   emit Finished(false);
 }

@@ -38,9 +38,12 @@
 #include <QIODevice>
 #include <QMetaEnum>
 #include <QMouseEvent>
+#include <QNetworkReply>
+#include <QObject>
 #include <QStringList>
 #include <QTcpServer>
 #include <QtDebug>
+#include <QTimer>
 #include <QTemporaryFile>
 #include <QtGlobal>
 #include <QUrl>
@@ -751,6 +754,19 @@ bool UrlOnSameDriveAsClementine(const QUrl& url) {
 QUrl GetRelativePathToClementineBin(const QUrl& url) {
   QDir appPath(QCoreApplication::applicationDirPath());
   return QUrl::fromLocalFile(appPath.relativeFilePath(url.toLocalFile()));
+}
+
+QByteArray GetData(QUrl url) {
+  QNetworkAccessManager* networkMgr = new QNetworkAccessManager();
+  QNetworkReply *reply = networkMgr->get(QNetworkRequest(url));
+  QEventLoop loop;
+  QTimer* time = new QTimer();
+  time->setSingleShot(true);
+  QObject::connect(time, SIGNAL(timeout()), &loop, SLOT(quit()));
+  time->start(10000);
+  QObject::connect(reply, SIGNAL(finished()), &loop, SLOT(quit()));
+  loop.exec();
+  return reply->readAll();
 }
 
 QString PathWithoutFilenameExtension(const QString& filename) {
