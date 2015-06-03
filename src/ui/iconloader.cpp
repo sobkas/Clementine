@@ -20,6 +20,7 @@
 #include "core/logging.h"
 #include "core/utilities.h"
 
+#include <QFile>
 #include <QtDebug>
 #include <QDir>
 
@@ -62,11 +63,9 @@ QIcon IconLoader::Load(const QString& name, const IconType& icontype) {
       if (!ret.isNull()) return ret;
     }
 
-#if QT_VERSION >= 0x040600
     // Then try to load it from the system theme
     ret = QIcon::fromTheme(name);
     if (!ret.isNull()) return ret;
-#endif
 
     // Otherwise use our fallback theme
     const QString path_file(":" + icon_sub_path_.at(icontype)
@@ -97,11 +96,9 @@ QIcon IconLoader::Load(const QString& name, const IconType& icontype) {
     if (!ret.isNull()) return ret;
   }
 
-#if QT_VERSION >= 0x040600
   // Then try to load it from the system theme
   ret = QIcon::fromTheme(name);
   if (!ret.isNull()) return ret;
-#endif
 
   // Otherwise use our fallback theme
   const QString path(":" + icon_sub_path_.at(icontype) + "/%1x%2/%3.png");
