@@ -22,6 +22,7 @@
 
 #include "songloader.h"
 
+#include <functional>
 #include <memory>
 
 #include <QBuffer>

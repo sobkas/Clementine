@@ -18,6 +18,8 @@
 #include "groupbydialog.h"
 #include "ui_groupbydialog.h"
 
+#include <functional>
+
 #include <QPushButton>
 
 // boost::multi_index still relies on these being in the global namespace.

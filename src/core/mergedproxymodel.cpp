@@ -24,6 +24,7 @@
 #include <QStringList>
 
 #include <limits>
+#include <functional>
 
 // boost::multi_index still relies on these being in the global namespace.
 using std::placeholders::_1;

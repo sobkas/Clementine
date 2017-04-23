@@ -17,8 +17,8 @@
 
 #include "playlistbackend.h"
 
-#include <memory>
 #include <functional>
+#include <memory>
 
 #include <QFile>
 #include <QHash>
