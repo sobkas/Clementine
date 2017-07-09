@@ -1181,12 +1181,6 @@ optional_source(HAVE_LIBPULSE
     engines/pulsedevicefinder.cpp
 )
 
-# Hack to add Clementine to the Unity system tray whitelist
-optional_source(LINUX
-  SOURCES core/ubuntuunityhack.cpp
-  HEADERS core/ubuntuunityhack.h
-)
-
 configure_file(${CMAKE_CURRENT_SOURCE_DIR}/config.h.in
                ${CMAKE_CURRENT_BINARY_DIR}/config.h)
 

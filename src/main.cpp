@@ -54,7 +54,6 @@
 #include "core/networkproxyfactory.h"
 #include "core/potranslator.h"
 #include "core/song.h"
-#include "core/ubuntuunityhack.h"
 #include "core/utilities.h"
 #include "engines/enginebase.h"
 #include "smartplaylists/generator.h"
@@ -425,13 +424,6 @@ int main(int argc, char* argv[]) {
   // Network proxy
   QNetworkProxyFactory::setApplicationProxyFactory(
       NetworkProxyFactory::Instance());
-
-#ifdef Q_OS_LINUX
-  // In 11.04 Ubuntu decided that the system tray should be reserved for certain
-  // whitelisted applications.  Clementine will override this setting and insert
-  // itself into the list of whitelisted apps.
-  UbuntuUnityHack hack;
-#endif  // Q_OS_LINUX
 
   // Create the tray icon and OSD
   std::unique_ptr<SystemTrayIcon> tray_icon(
